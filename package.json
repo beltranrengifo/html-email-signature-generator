@@ -61,6 +61,6 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown",
-    "*.ts|*.tsx": "eslint"
+    "**/*.ts|**/*.tsx": "eslint"
   }
 }
