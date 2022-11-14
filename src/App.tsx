@@ -4,6 +4,7 @@ import SignaturePreview from 'components/Signature/Preview/SignaturePreview'
 import { ColorModeSwitcher } from 'components/UI/ColorModeSwitcher'
 import GlobalStyles from 'assets/styles/global'
 import { Global } from '@emotion/react'
+import { SignatureProvider } from 'context/signature-context'
 
 export const App = () => (
   <ChakraProvider theme={theme}>
@@ -12,8 +13,12 @@ export const App = () => (
       <Grid minH="100vh" p={3}>
         <ColorModeSwitcher justifySelf="flex-end" />
         <VStack spacing={8}>
-          <SignatureFormData />
-          <SignaturePreview />
+          <SignatureProvider>
+            <>
+              <SignatureFormData />
+              <SignaturePreview />
+            </>
+          </SignatureProvider>
         </VStack>
       </Grid>
     </Box>

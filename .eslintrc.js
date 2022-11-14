@@ -10,6 +10,9 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   ignorePatterns: ['src/reportWebVitals.ts', 'src/serviceWorker.ts'],
+  globals: {
+    JSX: 'readonly',
+  },
   overrides: [
     {
       files: ['*.jsx', '*.tsx'],
