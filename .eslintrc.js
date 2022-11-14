@@ -9,6 +9,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:prettier/recommended',
   ],
+  ignorePatterns: ['src/reportWebVitals.ts', 'src/serviceWorker.ts'],
   overrides: [
     {
       files: ['*.jsx', '*.tsx'],
