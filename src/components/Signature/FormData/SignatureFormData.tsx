@@ -1,22 +1,33 @@
-import { Heading } from '@chakra-ui/react'
+import { Box, Button, Container, Heading, SimpleGrid } from '@chakra-ui/react'
+import { DeleteIcon } from '@chakra-ui/icons'
+
 import { useSignatureContext } from 'context/signature-context'
+import SignatureFormFields from './SignatureFormFields'
 
 const SignatureFormData = () => {
   const {
-    actions: { handleSetSignature, handleClearSignature },
+    actions: { handleClearSignature },
   } = useSignatureContext()
+
   return (
-    <section>
+    <Container>
       <Heading as="h2" size="3xl" noOfLines={1}>
         ✏️ Fill in your data
       </Heading>
-      <div>
-        <button onClick={() => handleSetSignature({ name: 'Pepe Luis' })}>
-          set name
-        </button>
-        <button onClick={() => handleClearSignature()}>clear all</button>
-      </div>
-    </section>
+      <SimpleGrid columns={2} spacing={10}>
+        <SignatureFormFields />
+      </SimpleGrid>
+      <Box>
+        <Button
+          leftIcon={<DeleteIcon />}
+          colorScheme="teal"
+          variant="solid"
+          onClick={() => handleClearSignature()}
+        >
+          Clear form
+        </Button>
+      </Box>
+    </Container>
   )
 }
 

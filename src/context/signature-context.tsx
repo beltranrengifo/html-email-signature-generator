@@ -5,20 +5,14 @@ interface ISignatureContext {
   actions: ISignatureActions
 }
 
-interface ISignatureState {
-  name: string
+export interface ISignatureState {
+  name?: string
   imageUrl?: string
   email?: string
   role?: string
   phone?: string
   company?: string
-  primaryUrl?: ISignatureUrl
-  secondaryUrl?: ISignatureUrl
-}
-
-interface ISignatureUrl {
-  url: string
-  label: string
+  companyUrl?: string
 }
 
 interface ISignatureActions {
@@ -27,14 +21,13 @@ interface ISignatureActions {
 }
 
 const initialState = {
-  name: '',
-  imageUrl: '',
-  email: '',
-  role: '',
-  phone: '',
-  company: '',
-  primaryUrl: { url: '', label: '' },
-  secondaryUrl: { url: '', label: '' },
+  name: 'Buster Keaton',
+  imageUrl: 'https://path-to-my-image/buster.jpg',
+  email: 'hi@busterkeatonproductions.com',
+  role: 'Actor, Director & Engineer',
+  phone: '+0 123 456 789',
+  company: 'Buster Keaton Productions',
+  companyUrl: 'https://busterkeatonproductions.com',
 }
 
 const SignatureContext = createContext<ISignatureContext | null>(null)
@@ -51,10 +44,7 @@ const SignatureProvider = ({ children }: { children: JSX.Element }) => {
       })),
     []
   )
-  const handleClearSignature = useCallback(
-    () => setState(() => initialState),
-    []
-  )
+  const handleClearSignature = useCallback(() => setState(initialState), [])
 
   const actions: ISignatureActions = {
     handleSetSignature,
