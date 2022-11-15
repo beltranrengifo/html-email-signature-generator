@@ -1,13 +1,90 @@
-import { FormControl, FormLabel, Input, VStack } from '@chakra-ui/react'
+import { FormControl, FormLabel, GridItem, Input } from '@chakra-ui/react'
+
 import { ISignatureState, useSignatureContext } from 'context/signature-context'
+
+interface IField {
+  label: string
+  name: string
+  pattern?: string
+  required?: boolean
+  type: string
+}
+
+const formFields: IField[] = [
+  {
+    label: 'Name',
+    name: 'name',
+    required: true,
+    type: 'text',
+  },
+  {
+    label: 'Email',
+    name: 'email',
+    type: 'email',
+  },
+  {
+    label: 'Image URL',
+    name: 'imageUrl',
+    pattern: 'https://.*',
+    type: 'url',
+  },
+  {
+    label: 'Work role',
+    name: 'role',
+    type: 'text',
+  },
+  {
+    label: 'Company name',
+    name: 'company',
+    type: 'text',
+  },
+  {
+    label: 'Company URL',
+    name: 'companyUrl',
+    pattern: 'https://.*',
+    type: 'url',
+  },
+  {
+    label: 'Phone',
+    name: 'phone',
+    type: 'tel',
+  },
+  {
+    label: 'LinkedIn URL',
+    name: 'linkedinUrl',
+    pattern: 'https://.*',
+    type: 'url',
+  },
+  {
+    label: 'Instagram URL',
+    name: 'instagramUrl',
+    pattern: 'https://.*',
+    type: 'url',
+  },
+  {
+    label: 'Twitter URL',
+    name: 'twitterUrl',
+    pattern: 'https://.*',
+    type: 'url',
+  },
+  {
+    label: 'Custom URL',
+    name: 'customUrl',
+    pattern: 'https://.*',
+    type: 'url',
+  },
+  {
+    label: 'Custom URL label',
+    name: 'customUrlLabel',
+    type: 'text',
+  },
+]
 
 const SignatureFormFields = () => {
   const {
     actions: { handleSetSignature },
     state,
   } = useSignatureContext()
-
-  const { name, imageUrl, email, role, phone, company, companyUrl } = state
 
   const onInputChange = ({ key, value }: { key: string; value: string }) => {
     handleSetSignature({
@@ -17,92 +94,24 @@ const SignatureFormFields = () => {
 
   return (
     <>
-      <VStack>
-        <FormControl isRequired>
-          <FormLabel>Name</FormLabel>
-          <Input
-            onChange={(event) =>
-              onInputChange({ key: 'name', value: event.target.value })
-            }
-            placeholder={name}
-            type="text"
-            value={name}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel>Email</FormLabel>
-          <Input
-            onChange={(event) =>
-              onInputChange({ key: 'email', value: event.target.value })
-            }
-            placeholder={email}
-            type="email"
-            value={email}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel>Image URL</FormLabel>
-          <Input
-            onChange={(event) =>
-              onInputChange({ key: 'imageUrl', value: event.target.value })
-            }
-            pattern="https://.*"
-            placeholder={imageUrl}
-            type="url"
-            value={imageUrl}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel>Phone</FormLabel>
-          <Input
-            onChange={(event) =>
-              onInputChange({ key: 'phone', value: event.target.value })
-            }
-            placeholder={phone}
-            type="tel"
-            value={phone}
-          />
-        </FormControl>
-      </VStack>
-      <VStack>
-        <FormControl>
-          <FormLabel>Your role</FormLabel>
-          <Input
-            onChange={(event) =>
-              onInputChange({ key: 'role', value: event.target.value })
-            }
-            placeholder={role}
-            type="text"
-            value={role}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel>Company name</FormLabel>
-          <Input
-            onChange={(event) =>
-              onInputChange({ key: 'company', value: event.target.value })
-            }
-            placeholder={company}
-            type="text"
-            value={company}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel>Company site URL</FormLabel>
-          <Input
-            onChange={(event) =>
-              onInputChange({
-                key: 'companyUrl',
-                value: event.target.value,
-              })
-            }
-            pattern="https://.*"
-            placeholder={companyUrl}
-            type="url"
-            value={companyUrl}
-          />
-        </FormControl>
-      </VStack>
+      {formFields.map(({ label, name, pattern, required, type }) => {
+        return (
+          <GridItem key={name}>
+            <FormControl isRequired={required}>
+              <FormLabel>{label}</FormLabel>
+              <Input
+                onChange={(event) =>
+                  onInputChange({ key: name, value: event.target.value })
+                }
+                pattern={pattern}
+                placeholder={name}
+                type={type}
+                value={state[name as keyof ISignatureState]}
+              />
+            </FormControl>
+          </GridItem>
+        )
+      })}
     </>
   )
 }
