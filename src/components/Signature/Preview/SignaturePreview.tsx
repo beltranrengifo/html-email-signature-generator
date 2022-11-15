@@ -182,10 +182,6 @@ const SignaturePreview = () => {
           </table>
         )}
       </section>
-
-      <div>
-        <pre>{JSON.stringify(state, null, 2)}</pre>
-      </div>
     </Container>
   )
 }
