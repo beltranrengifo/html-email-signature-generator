@@ -1,13 +1,6 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react'
+import { createContext, useCallback, useContext, useState } from 'react'
 import buster from 'assets/images/bkp.jpg'
 import busterDark from 'assets/images/bkp-dark.jpg'
-import { useColorModeValue } from '@chakra-ui/react'
 
 interface ISignatureContext {
   state: ISignatureState
@@ -21,6 +14,7 @@ interface ISignatureActions {
 export interface ISignatureState {
   name?: string
   imageUrl?: string
+  darkImageUrl?: string
   email?: string
   role?: string
   phone?: string
@@ -29,6 +23,7 @@ export interface ISignatureState {
   linkedinUrl?: string
   instagramUrl?: string
   twitterUrl?: string
+  tiktokUrl?: string
   customUrl?: string
   customUrlLabel?: string
 }
@@ -36,6 +31,7 @@ export interface ISignatureState {
 const initialState: ISignatureState = {
   name: 'Buster Keaton',
   imageUrl: buster,
+  darkImageUrl: busterDark,
   email: 'hi@busterkeatonproductions.com',
   role: 'Actor, Director & Engineer',
   phone: '+0 123 456 789',
@@ -44,6 +40,7 @@ const initialState: ISignatureState = {
   linkedinUrl: 'https://www.linkedin.com/in/busterkeaton/',
   instagramUrl: 'https://www.instagram.com/busterkeaton/',
   twitterUrl: 'https://www.twitter.com/busterkeaton/',
+  tiktokUrl: 'https://www.tiktok.com/busterkeaton/',
   customUrl: 'https://www.my-custom-domain.com/',
   customUrlLabel: 'Visit my custom domain',
 }
@@ -53,12 +50,6 @@ SignatureContext.displayName = 'SignatureContext'
 
 const SignatureProvider = ({ children }: { children: JSX.Element }) => {
   const [state, setState] = useState(initialState)
-
-  const image = useColorModeValue(initialState.imageUrl, busterDark)
-
-  useEffect(() => {
-    setState({ ...initialState, imageUrl: image })
-  }, [image])
 
   const handleSetSignature = useCallback(
     (next: ISignatureState) =>

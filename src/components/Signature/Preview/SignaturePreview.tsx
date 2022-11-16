@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
-import { Container, Heading, useColorModeValue } from '@chakra-ui/react'
+import {
+  Alert,
+  AlertIcon,
+  Container,
+  Heading,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import { useSignatureContext } from 'context/signature-context'
 
 import linkedInIcon from 'assets/images/linkedin.png'
@@ -9,8 +15,10 @@ import instagramIcon from 'assets/images/instagram.png'
 import instagramIconLight from 'assets/images/instagram-w.png'
 import twitterIcon from 'assets/images/twitter.png'
 import twitterIconLight from 'assets/images/twitter-w.png'
+import tiktokIcon from 'assets/images/tik-tok.png'
+import tiktokIconLight from 'assets/images/tik-tok-w.png'
 
-const isValidFieldValue = (field: string | undefined): boolean => {
+export const isValidFieldValue = (field: string | undefined): boolean => {
   return field !== null && field !== '' && field !== undefined
 }
 
@@ -19,6 +27,7 @@ const SignaturePreview = () => {
   const {
     name,
     imageUrl,
+    darkImageUrl,
     email,
     role,
     phone,
@@ -27,14 +36,20 @@ const SignaturePreview = () => {
     linkedinUrl,
     instagramUrl,
     twitterUrl,
+    tiktokUrl,
     customUrl,
     customUrlLabel,
   } = state
 
   const color = useColorModeValue('#473741', '#d2d2d2')
+  const image = useColorModeValue(
+    imageUrl,
+    isValidFieldValue(darkImageUrl) ? darkImageUrl : imageUrl
+  )
   const linkedInImage = useColorModeValue(linkedInIcon, linkedInIconLight)
   const instagramImage = useColorModeValue(instagramIcon, instagramIconLight)
   const twitterImage = useColorModeValue(twitterIcon, twitterIconLight)
+  const tiktokImage = useColorModeValue(tiktokIcon, tiktokIconLight)
 
   const baseStyles = {
     WebkitMarginBefore: 0,
@@ -54,7 +69,7 @@ const SignaturePreview = () => {
 
       <section id="signature-render">
         <meta httpEquiv="Content-Type" content="text/html charset=UTF-8" />
-        {isValidFieldValue(name) && (
+        {isValidFieldValue(name) ? (
           <table
             border={0}
             cellPadding="0"
@@ -62,14 +77,14 @@ const SignaturePreview = () => {
           >
             <tbody>
               <tr>
-                {isValidFieldValue(imageUrl) && (
+                {isValidFieldValue(image) && (
                   <td style={{ width: '170px' }}>
                     <img
-                      src={imageUrl}
+                      src={image}
                       width="170"
                       height="163"
-                      alt="Grupo La Musa"
-                      title="Grupo La Musa"
+                      alt="Email Signature Image"
+                      title="Email Signature Image"
                     />
                   </td>
                 )}
@@ -164,6 +179,22 @@ const SignaturePreview = () => {
                       />
                     </a>
                   )}
+                  {isValidFieldValue(tiktokUrl) && (
+                    <a
+                      href={tiktokUrl}
+                      style={{ textDecoration: 'none' }}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img
+                        src={tiktokImage}
+                        alt="Twitter"
+                        width="25"
+                        height="25"
+                        style={{ display: 'inline', margin: '8px 0 0 5px' }}
+                      />
+                    </a>
+                  )}
                   {isValidFieldValue(customUrl) && (
                     <a
                       href={isValidFieldValue(customUrl) ? customUrl : '#'}
@@ -180,6 +211,11 @@ const SignaturePreview = () => {
               </tr>
             </tbody>
           </table>
+        ) : (
+          <Alert status="info">
+            <AlertIcon />
+            Please, fill in the mandatory fields
+          </Alert>
         )}
       </section>
     </Container>

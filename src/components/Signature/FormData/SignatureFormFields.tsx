@@ -1,84 +1,15 @@
-import { FormControl, FormLabel, GridItem, Input } from '@chakra-ui/react'
+import {
+  FormControl,
+  FormLabel,
+  GridItem,
+  Input,
+  Tooltip,
+} from '@chakra-ui/react'
+import { InfoOutlineIcon } from '@chakra-ui/icons'
 
 import { ISignatureState, useSignatureContext } from 'context/signature-context'
-
-interface IField {
-  label: string
-  name: string
-  pattern?: string
-  required?: boolean
-  type: string
-}
-
-const formFields: IField[] = [
-  {
-    label: 'Name',
-    name: 'name',
-    required: true,
-    type: 'text',
-  },
-  {
-    label: 'Email',
-    name: 'email',
-    type: 'email',
-  },
-  {
-    label: 'Image URL',
-    name: 'imageUrl',
-    pattern: 'https://.*',
-    type: 'url',
-  },
-  {
-    label: 'Work role',
-    name: 'role',
-    type: 'text',
-  },
-  {
-    label: 'Company name',
-    name: 'company',
-    type: 'text',
-  },
-  {
-    label: 'Company URL',
-    name: 'companyUrl',
-    pattern: 'https://.*',
-    type: 'url',
-  },
-  {
-    label: 'Phone',
-    name: 'phone',
-    type: 'tel',
-  },
-  {
-    label: 'LinkedIn URL',
-    name: 'linkedinUrl',
-    pattern: 'https://.*',
-    type: 'url',
-  },
-  {
-    label: 'Instagram URL',
-    name: 'instagramUrl',
-    pattern: 'https://.*',
-    type: 'url',
-  },
-  {
-    label: 'Twitter URL',
-    name: 'twitterUrl',
-    pattern: 'https://.*',
-    type: 'url',
-  },
-  {
-    label: 'Custom URL',
-    name: 'customUrl',
-    pattern: 'https://.*',
-    type: 'url',
-  },
-  {
-    label: 'Custom URL label',
-    name: 'customUrlLabel',
-    type: 'text',
-  },
-]
+import { formFields } from './formFields'
+import { isValidFieldValue } from 'components/Signature/Preview/SignaturePreview'
 
 const SignatureFormFields = () => {
   const {
@@ -94,11 +25,18 @@ const SignatureFormFields = () => {
 
   return (
     <>
-      {formFields.map(({ label, name, pattern, required, type }) => {
+      {formFields.map(({ label, name, pattern, required, type, tooltip }) => {
         return (
           <GridItem key={name}>
             <FormControl isRequired={required}>
-              <FormLabel>{label}</FormLabel>
+              <FormLabel>
+                {label}{' '}
+                {Boolean(isValidFieldValue(tooltip)) && (
+                  <Tooltip hasArrow label={tooltip} placement="top">
+                    <InfoOutlineIcon mb="3px" ml="4px" />
+                  </Tooltip>
+                )}
+              </FormLabel>
               <Input
                 onChange={(event) =>
                   onInputChange({ key: name, value: event.target.value })
