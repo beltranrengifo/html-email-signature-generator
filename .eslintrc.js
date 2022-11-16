@@ -18,6 +18,8 @@ module.exports = {
       files: ['*.jsx', '*.tsx'],
       rules: {
         '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/strict-boolean-expressions': 'off',
+        '@typescript-eslint/no-dynamic-delete': 'off',
       },
     },
   ],

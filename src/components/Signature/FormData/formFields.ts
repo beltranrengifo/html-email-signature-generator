@@ -29,7 +29,7 @@ const formFields: IField[] = [
     pattern: 'https://.*',
     renderUploadButton: true,
     tooltip:
-      'Paste your image URL or upload a new one. JPG, PNG and GIF formats. Max file size allowed 400KB. Recommended image max width 600px',
+      'Paste your image URL or upload a new one. JPG, PNG and GIF formats. Max file size allowed 800KB. Recommended image max width 600px',
     type: 'url',
   },
   {

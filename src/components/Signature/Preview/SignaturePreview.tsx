@@ -17,13 +17,18 @@ import twitterIcon from 'assets/images/twitter.png'
 import twitterIconLight from 'assets/images/twitter-w.png'
 import tiktokIcon from 'assets/images/tik-tok.png'
 import tiktokIconLight from 'assets/images/tik-tok-w.png'
+import useLocalStorage from 'hooks/useLocalStorage'
+import { useEffect } from 'react'
 
 export const isValidFieldValue = (field: string | undefined): boolean => {
   return field !== null && field !== '' && field !== undefined
 }
 
 const SignaturePreview = () => {
-  const { state } = useSignatureContext()
+  const {
+    state,
+    actions: { handleSetSignature },
+  } = useSignatureContext()
   const {
     name,
     imageUrl,
@@ -42,14 +47,29 @@ const SignaturePreview = () => {
   } = state
 
   const color = useColorModeValue('#473741', '#d2d2d2')
-  const image = useColorModeValue(
-    imageUrl,
-    isValidFieldValue(darkImageUrl) ? darkImageUrl : imageUrl
-  )
+
   const linkedInImage = useColorModeValue(linkedInIcon, linkedInIconLight)
   const instagramImage = useColorModeValue(instagramIcon, instagramIconLight)
   const twitterImage = useColorModeValue(twitterIcon, twitterIconLight)
   const tiktokImage = useColorModeValue(tiktokIcon, tiktokIconLight)
+
+  const [storedImages] = useLocalStorage('uploadedImages', {
+    imageUrl: '',
+    darkImageUrl: '',
+  })
+
+  Object.keys(storedImages).forEach((key) => {
+    if (storedImages[key] === '') {
+      delete storedImages[key]
+    }
+  })
+
+  const image = useColorModeValue(
+    storedImages?.imageUrl || imageUrl,
+    isValidFieldValue(storedImages?.darkImageUrl)
+      ? storedImages.darkImageUrl
+      : darkImageUrl ?? imageUrl
+  )
 
   const baseStyles = {
     WebkitMarginBefore: 0,
@@ -60,6 +80,14 @@ const SignaturePreview = () => {
     letterSpacing: '1px',
     margin: '12px 0 0 0',
   }
+
+  useEffect(() => {
+    if (Object.keys(storedImages).length) {
+      handleSetSignature({
+        ...storedImages,
+      })
+    }
+  }, [storedImages])
 
   return (
     <Container>

@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useState } from 'react'
 import buster from 'assets/images/bkp.jpg'
 import busterDark from 'assets/images/bkp-dark.jpg'
+import useLocalStorage from 'hooks/useLocalStorage'
 
 interface ISignatureContext {
   state: ISignatureState
@@ -51,6 +52,8 @@ SignatureContext.displayName = 'SignatureContext'
 const SignatureProvider = ({ children }: { children: JSX.Element }) => {
   const [state, setState] = useState(initialState)
 
+  const [, setUploadedImageOnStorage] = useLocalStorage('uploadedImages', {})
+
   const handleSetSignature = useCallback(
     (next: ISignatureState) =>
       setState((prev: ISignatureState) => ({
@@ -67,6 +70,7 @@ const SignatureProvider = ({ children }: { children: JSX.Element }) => {
     })
 
     setState(reset)
+    setUploadedImageOnStorage({})
   }, [])
 
   const actions: ISignatureActions = {

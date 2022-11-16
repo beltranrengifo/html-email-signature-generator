@@ -12,6 +12,7 @@ import { ISignatureState, useSignatureContext } from 'context/signature-context'
 import { formFields } from './formFields'
 import { isValidFieldValue } from 'components/Signature/Preview/SignaturePreview'
 import UploadWidget from 'components/UploadWidget/UploadWidget'
+import useLocalStorage from 'hooks/useLocalStorage'
 
 const SignatureFormFields = () => {
   const {
@@ -19,16 +20,22 @@ const SignatureFormFields = () => {
     state,
   } = useSignatureContext()
 
+  const [uploadedImageOnStorage, setUploadedImageOnStorage] = useLocalStorage(
+    'uploadedImages',
+    {}
+  )
+
   const onInputChange = ({ key, value }: { key: string; value: string }) => {
     handleSetSignature({
       [key as keyof ISignatureState]: value,
     })
   }
 
-  const handleUploadSuccess = (key: string, url: string) => {
+  const handleUploadSuccess = (url: string, fieldName: string) => {
     handleSetSignature({
-      [key as keyof ISignatureState]: url,
+      [fieldName as keyof ISignatureState]: url,
     })
+    setUploadedImageOnStorage({ ...uploadedImageOnStorage, [fieldName]: url })
   }
 
   return (
@@ -56,9 +63,10 @@ const SignatureFormFields = () => {
                   )}
                   {(renderUploadButton ?? false) && (
                     <UploadWidget
-                      onSuccess={(url: string) => {
-                        handleUploadSuccess(name, url)
+                      onSuccess={(url: string, fieldName: string) => {
+                        handleUploadSuccess(url, fieldName)
                       }}
+                      fieldName={name}
                     />
                   )}
                 </FormLabel>

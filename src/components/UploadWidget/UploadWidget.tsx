@@ -1,26 +1,29 @@
 import { Button, useToast } from '@chakra-ui/react'
-import useLocalStorage from 'hooks/useLocalStorage'
 import { useEffect, useRef } from 'react'
 
-const UploadWidget = ({ onSuccess }: { onSuccess: (url: string) => void }) => {
+const UploadWidget = ({
+  onSuccess,
+  fieldName,
+}: {
+  onSuccess: (url: string, fieldName: string) => void
+  fieldName: string
+}) => {
   const cloudinaryRef = useRef()
   const widgetRef = useRef({})
 
   const toast = useToast()
-
-  const [, setUploadedImage] = useLocalStorage('uploadedImage', '')
-  const [, setUploadedDarkImage] = useLocalStorage('uploadedDarkImage', '')
 
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary
 
     widgetRef.current = (cloudinaryRef.current as any).createUploadWidget(
       {
+        cropping: true,
         cloudName: 'dap1oowul',
         uploadPreset: 'ixo6nhfh',
-        sources: ['local'],
+        sources: ['local', 'camera', 'image_search', 'instagram', 'unsplash'],
         multiple: false,
-        maxImageFileSize: 400000,
+        maxImageFileSize: 800000,
         maxImageWidth: 800,
       },
       (error: unknown, result: any) => {
@@ -28,10 +31,7 @@ const UploadWidget = ({ onSuccess }: { onSuccess: (url: string) => void }) => {
           console.error(result)
         } else {
           if (result.event === 'success') {
-            onSuccess(result.info.url)
-
-            setUploadedImage(result.info.url)
-            setUploadedDarkImage(result.info.url)
+            onSuccess(result.info.url, fieldName)
 
             toast({
               title: 'Upload completed.',
