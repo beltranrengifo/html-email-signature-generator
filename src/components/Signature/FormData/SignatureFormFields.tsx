@@ -1,5 +1,6 @@
 import {
   FormControl,
+  FormHelperText,
   FormLabel,
   GridItem,
   Input,
@@ -10,6 +11,7 @@ import { InfoOutlineIcon } from '@chakra-ui/icons'
 import { ISignatureState, useSignatureContext } from 'context/signature-context'
 import { formFields } from './formFields'
 import { isValidFieldValue } from 'components/Signature/Preview/SignaturePreview'
+import UploadWidget from 'components/UploadWidget/UploadWidget'
 
 const SignatureFormFields = () => {
   const {
@@ -23,33 +25,60 @@ const SignatureFormFields = () => {
     })
   }
 
+  const handleUploadSuccess = (key: string, url: string) => {
+    handleSetSignature({
+      [key as keyof ISignatureState]: url,
+    })
+  }
+
   return (
     <>
-      {formFields.map(({ label, name, pattern, required, type, tooltip }) => {
-        return (
-          <GridItem key={name}>
-            <FormControl isRequired={required}>
-              <FormLabel>
-                {label}{' '}
-                {Boolean(isValidFieldValue(tooltip)) && (
-                  <Tooltip hasArrow label={tooltip} placement="top">
-                    <InfoOutlineIcon mb="3px" ml="4px" />
-                  </Tooltip>
+      {formFields.map(
+        ({
+          helperText,
+          label,
+          name,
+          pattern,
+          renderUploadButton,
+          required,
+          type,
+          tooltip,
+        }) => {
+          return (
+            <GridItem key={name}>
+              <FormControl isRequired={required}>
+                <FormLabel>
+                  {label}{' '}
+                  {Boolean(isValidFieldValue(tooltip)) && (
+                    <Tooltip hasArrow label={tooltip} placement="top">
+                      <InfoOutlineIcon mb="3px" ml="4px" />
+                    </Tooltip>
+                  )}
+                  {(renderUploadButton ?? false) && (
+                    <UploadWidget
+                      onSuccess={(url: string) => {
+                        handleUploadSuccess(name, url)
+                      }}
+                    />
+                  )}
+                </FormLabel>
+                <Input
+                  onChange={(event) =>
+                    onInputChange({ key: name, value: event.target.value })
+                  }
+                  pattern={pattern}
+                  placeholder={name}
+                  type={type}
+                  value={state[name as keyof ISignatureState]}
+                />
+                {isValidFieldValue(helperText) && (
+                  <FormHelperText textAlign="left">{helperText}</FormHelperText>
                 )}
-              </FormLabel>
-              <Input
-                onChange={(event) =>
-                  onInputChange({ key: name, value: event.target.value })
-                }
-                pattern={pattern}
-                placeholder={name}
-                type={type}
-                value={state[name as keyof ISignatureState]}
-              />
-            </FormControl>
-          </GridItem>
-        )
-      })}
+              </FormControl>
+            </GridItem>
+          )
+        }
+      )}
     </>
   )
 }
