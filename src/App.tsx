@@ -10,7 +10,7 @@ export const App = () => (
   <ChakraProvider theme={theme}>
     <Global styles={GlobalStyles} />
     <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
+      <Grid p={3}>
         <SignatureThemeSelector showTitle={false} />
         <VStack spacing={8}>
           <SignatureProvider>
