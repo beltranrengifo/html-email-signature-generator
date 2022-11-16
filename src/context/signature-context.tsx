@@ -1,6 +1,4 @@
 import { createContext, useCallback, useContext, useState } from 'react'
-import buster from 'assets/images/bkp.jpg'
-import busterDark from 'assets/images/bkp-dark.jpg'
 import useLocalStorage from 'hooks/useLocalStorage'
 
 interface ISignatureContext {
@@ -31,8 +29,10 @@ export interface ISignatureState {
 
 const initialState: ISignatureState = {
   name: 'Buster Keaton',
-  imageUrl: buster,
-  darkImageUrl: busterDark,
+  imageUrl:
+    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636237/bkp_hnbwnc.jpg',
+  darkImageUrl:
+    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636238/bkp-dark_elerog.jpg',
   email: 'hi@busterkeatonproductions.com',
   role: 'Actor, Director & Engineer',
   phone: '+0 123 456 789',

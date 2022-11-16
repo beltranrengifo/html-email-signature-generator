@@ -9,14 +9,6 @@ import {
 } from '@chakra-ui/react'
 import { useSignatureContext } from 'context/signature-context'
 
-import linkedInIcon from 'assets/images/linkedin.png'
-import linkedInIconLight from 'assets/images/linkedin-w.png'
-import instagramIcon from 'assets/images/instagram.png'
-import instagramIconLight from 'assets/images/instagram-w.png'
-import twitterIcon from 'assets/images/twitter.png'
-import twitterIconLight from 'assets/images/twitter-w.png'
-import tiktokIcon from 'assets/images/tik-tok.png'
-import tiktokIconLight from 'assets/images/tik-tok-w.png'
 import useLocalStorage from 'hooks/useLocalStorage'
 import { useEffect } from 'react'
 
@@ -48,10 +40,22 @@ const SignaturePreview = () => {
 
   const color = useColorModeValue('#473741', '#d2d2d2')
 
-  const linkedInImage = useColorModeValue(linkedInIcon, linkedInIconLight)
-  const instagramImage = useColorModeValue(instagramIcon, instagramIconLight)
-  const twitterImage = useColorModeValue(twitterIcon, twitterIconLight)
-  const tiktokImage = useColorModeValue(tiktokIcon, tiktokIconLight)
+  const linkedInImage = useColorModeValue(
+    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636238/linkedin_iivhm4.png',
+    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636238/linkedin-w_jsjf9z.png'
+  )
+  const instagramImage = useColorModeValue(
+    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636237/instagram_xyajry.png',
+    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636237/instagram-w_ttsind.png'
+  )
+  const twitterImage = useColorModeValue(
+    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636238/twitter_ajqfha.png',
+    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636238/twitter-w_xtnz6v.png'
+  )
+  const tiktokImage = useColorModeValue(
+    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636238/tik-tok_sckheo.png',
+    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636238/tik-tok-w_mnaehf.png'
+  )
 
   const [storedImages] = useLocalStorage('uploadedImages', {
     imageUrl: '',
