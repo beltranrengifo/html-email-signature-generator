@@ -16,8 +16,8 @@ const SignatureFormData = () => {
 
   return (
     <Container>
-      <Heading as="h2" my={6} noOfLines={1} size="3xl">
-        ✏️ Fill in your data
+      <Heading as="h2" my={6} noOfLines={1} size="2xl" textAlign="left">
+        Fill in your data
       </Heading>
       <Grid
         templateColumns={{ sm: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
@@ -25,7 +25,7 @@ const SignatureFormData = () => {
       >
         <SignatureFormFields />
       </Grid>
-      <Box>
+      <Box textAlign="left">
         <Button
           colorScheme="teal"
           disabled={formIsEmpty}

@@ -63,8 +63,8 @@ const SignaturePreview = () => {
 
   return (
     <Container>
-      <Heading as="h2" my={6} noOfLines={1} size="3xl">
-        Preview your signature 👀
+      <Heading as="h2" my={6} noOfLines={1} size="2xl" textAlign="left">
+        Preview your signature
       </Heading>
 
       <section id="signature-render">
