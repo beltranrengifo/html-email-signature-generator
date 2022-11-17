@@ -6,6 +6,7 @@ import { Global } from '@emotion/react'
 import { SignatureProvider } from 'context/signature-context'
 import SignatureThemeSelector from 'components/Signature/ThemeSelector/SignatureThemeSelector'
 import Header from 'components/Header/Header'
+import SignatureImplementDocs from 'components/Signature/ImplementDocs/SignatureImplementDocs'
 
 export const App = () => (
   <ChakraProvider theme={theme}>
@@ -20,6 +21,7 @@ export const App = () => (
             <>
               <SignatureFormData />
               <SignaturePreview />
+              <SignatureImplementDocs />
             </>
           </SignatureProvider>
         </VStack>

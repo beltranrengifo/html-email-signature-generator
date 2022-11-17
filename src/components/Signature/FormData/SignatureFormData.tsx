@@ -29,7 +29,7 @@ const SignatureFormData = () => {
   return (
     <Container>
       <HeadingStyled as="h2" my={6} noOfLines={1} size="2xl" textAlign="left">
-        <span>Fill in your data 🤓</span>
+        <span>Fill in data 🤓</span>
         {CollapseButton}
       </HeadingStyled>
       <Collapse isOpened={collapseIsOpen}>

@@ -11,11 +11,12 @@ const useCollapse = (initialState: boolean): [boolean, any] => {
       onClick={() => setCollapseIsOpen(!collapseIsOpen)}
       colorScheme="yellow"
       ml="4px"
-      pt="3px"
+      pt="5px"
+      pb="4px"
       size="xs"
       variant="outline"
     >
-      {collapseIsOpen ? 'Collapse' : 'Show'}
+      {collapseIsOpen ? 'Collapse section' : 'Expand section'}
     </Button>,
   ]
 }

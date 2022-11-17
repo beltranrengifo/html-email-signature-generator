@@ -126,7 +126,8 @@ const SignaturePreview = () => {
         clipboardEvent.clearSelection()
         toast({
           title: 'Signature in clipboard!',
-          description: "Doubts about what's next? Check the docs 📑",
+          description:
+            "Doubts about what's next? Check the `How to use` section 📑",
           status: 'success',
           duration: 9000,
           isClosable: true,
@@ -147,7 +148,7 @@ const SignaturePreview = () => {
   return (
     <Container>
       <HeadingStyled as="h2" my={6} noOfLines={1} size="2xl" textAlign="left">
-        <span>Preview your signature 🧐</span>
+        <span>Preview signature 🧐</span>
         {CollapseButton}
       </HeadingStyled>
       <Collapse isOpened={collapseIsOpen}>
