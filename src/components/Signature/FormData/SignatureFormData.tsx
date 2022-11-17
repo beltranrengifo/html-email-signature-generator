@@ -5,8 +5,8 @@ import { DeleteIcon } from '@chakra-ui/icons'
 
 import { useSignatureContext } from 'context/signature-context'
 import SignatureFormFields from './SignatureFormFields'
-import { useState } from 'react'
 import styled from '@emotion/styled'
+import useCollapse from 'hooks/useCollapse'
 
 export const HeadingStyled = styled(Heading)`
   align-items: center;
@@ -15,7 +15,7 @@ export const HeadingStyled = styled(Heading)`
 `
 
 const SignatureFormData = () => {
-  const [collapseIsOpen, setCollapseIsOpen] = useState(true)
+  const [collapseIsOpen, CollapseButton] = useCollapse(true)
 
   const {
     actions: { handleClearSignature },
@@ -30,15 +30,7 @@ const SignatureFormData = () => {
     <Container>
       <HeadingStyled as="h2" my={6} noOfLines={1} size="2xl" textAlign="left">
         <span>Fill in your data 🤓</span>
-        <Button
-          onClick={() => setCollapseIsOpen(!collapseIsOpen)}
-          colorScheme="yellow"
-          ml="4px"
-          size="xs"
-          variant="outline"
-        >
-          {collapseIsOpen ? 'Collapse' : 'Show'}
-        </Button>
+        {CollapseButton}
       </HeadingStyled>
       <Collapse isOpened={collapseIsOpen}>
         <Grid

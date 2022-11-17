@@ -20,6 +20,7 @@ import { useSignatureContext } from 'context/signature-context'
 import useLocalStorage from 'hooks/useLocalStorage'
 import { useEffect, useState } from 'react'
 import { HeadingStyled } from 'components/Signature/FormData/SignatureFormData'
+import useCollapse from 'hooks/useCollapse'
 
 export const isValidFieldValue = (field: string | undefined): boolean => {
   return field !== null && field !== '' && field !== undefined
@@ -28,10 +29,10 @@ export const isValidFieldValue = (field: string | undefined): boolean => {
 const SignaturePreview = () => {
   let clipboard: Clipboard
 
+  const [collapseIsOpen, CollapseButton] = useCollapse(false)
+
   const [isCopying, setIsCopying] = useState(false)
   const toast = useToast()
-
-  const [collapseIsOpen, setCollapseIsOpen] = useState(false)
 
   const {
     state,
@@ -147,15 +148,7 @@ const SignaturePreview = () => {
     <Container>
       <HeadingStyled as="h2" my={6} noOfLines={1} size="2xl" textAlign="left">
         <span>Preview your signature 🧐</span>
-        <Button
-          onClick={() => setCollapseIsOpen(!collapseIsOpen)}
-          colorScheme="yellow"
-          ml="4px"
-          size="xs"
-          variant="outline"
-        >
-          {collapseIsOpen ? 'Collapse' : 'Show'}
-        </Button>
+        {CollapseButton}
       </HeadingStyled>
       <Collapse isOpened={collapseIsOpen}>
         <Card size="lg" pb="40px">
