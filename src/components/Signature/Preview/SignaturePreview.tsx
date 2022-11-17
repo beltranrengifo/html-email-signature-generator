@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-vars */
 import {
   Alert,
   AlertIcon,
@@ -8,9 +6,7 @@ import {
   useColorModeValue,
   Card,
   CardBody,
-  Box,
   Button,
-  HStack,
   CardHeader,
   useToast,
 } from '@chakra-ui/react'
@@ -53,6 +49,7 @@ const SignaturePreview = () => {
     tiktokUrl,
     customUrl,
     customUrlLabel,
+    disclaimer,
   } = state
 
   const color = useColorModeValue('#473741', '#d2d2d2')
@@ -160,7 +157,7 @@ const SignaturePreview = () => {
                 style={{ tableLayout: 'auto', marginTop: '40px' }}
               >
                 <tbody>
-                  <tr>
+                  <tr style={{ verticalAlign: 'bottom' }}>
                     {isValidFieldValue(image) && (
                       <td style={{ width: '170px' }}>
                         <img
@@ -197,12 +194,37 @@ const SignaturePreview = () => {
                             style={{
                               ...baseStyles,
                               fontSize: '12px',
-                              margin: 0,
+                              margin: '8px 0 0 0',
                               wordBreak: 'keep-all',
                               whiteSpace: 'nowrap',
                             }}
                           >
                             {email}
+                          </p>
+                        </a>
+                      )}
+                      {isValidFieldValue(phone) && (
+                        <a
+                          // phone value is already checked above
+                          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+                          href={`tel:${phone}`}
+                          style={{
+                            textDecoration: 'none',
+                            wordBreak: 'keep-all',
+                          }}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <p
+                            style={{
+                              ...baseStyles,
+                              fontSize: '12px',
+                              margin: 0,
+                              wordBreak: 'keep-all',
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            {phone}
                           </p>
                         </a>
                       )}
@@ -219,7 +241,7 @@ const SignaturePreview = () => {
                             style={{
                               ...baseStyles,
                               fontSize: '12px',
-                              margin: 0,
+                              margin: '8px 0 0 0',
                             }}
                           >
                             {company}
@@ -310,6 +332,31 @@ const SignaturePreview = () => {
                       )}
                     </td>
                   </tr>
+                  {isValidFieldValue(disclaimer) && (
+                    <>
+                      <tr>
+                        <td style={{ height: '25px' }} colSpan={3}></td>
+                      </tr>
+                      <tr>
+                        <td
+                          style={{ verticalAlign: 'top' }}
+                          colSpan={3}
+                          width="420"
+                        >
+                          <p
+                            style={{
+                              ...baseStyles,
+                              textAlign: 'justify',
+                              fontSize: '7px',
+                              margin: 0,
+                            }}
+                          >
+                            {disclaimer}
+                          </p>
+                        </td>
+                      </tr>
+                    </>
+                  )}
                 </tbody>
               </table>
             ) : (

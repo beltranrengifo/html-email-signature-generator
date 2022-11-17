@@ -5,6 +5,7 @@ interface IField {
   pattern?: string
   renderUploadButton?: boolean | undefined
   required?: boolean
+  skipRender?: boolean | undefined
   tooltip?: string | undefined
   type: string
 }
@@ -98,6 +99,12 @@ const formFields: IField[] = [
     label: 'Custom URL label',
     name: 'customUrlLabel',
     type: 'text',
+  },
+  {
+    label: 'Disclaimer',
+    name: 'disclaimer',
+    skipRender: true,
+    type: 'textArea',
   },
 ]
 

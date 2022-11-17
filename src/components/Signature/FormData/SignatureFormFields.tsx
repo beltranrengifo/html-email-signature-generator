@@ -4,6 +4,7 @@ import {
   FormLabel,
   GridItem,
   Input,
+  Textarea,
   Tooltip,
 } from '@chakra-ui/react'
 import { InfoOutlineIcon } from '@chakra-ui/icons'
@@ -38,6 +39,8 @@ const SignatureFormFields = () => {
     setUploadedImageOnStorage({ ...uploadedImageOnStorage, [fieldName]: url })
   }
 
+  const disclaimer = formFields.find((field) => field.name === 'disclaimer')
+
   return (
     <>
       {formFields.map(
@@ -48,9 +51,12 @@ const SignatureFormFields = () => {
           pattern,
           renderUploadButton,
           required,
+          skipRender,
           type,
           tooltip,
         }) => {
+          if (skipRender) return null
+
           return (
             <GridItem key={name}>
               <FormControl isRequired={required}>
@@ -87,6 +93,15 @@ const SignatureFormFields = () => {
           )
         }
       )}
+      <GridItem colSpan={2}>
+        <Textarea
+          placeholder={disclaimer?.label}
+          value={state.disclaimer}
+          onChange={(event) =>
+            onInputChange({ key: 'disclaimer', value: event.target.value })
+          }
+        />
+      </GridItem>
     </>
   )
 }
