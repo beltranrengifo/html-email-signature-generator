@@ -24,7 +24,7 @@ export const isValidFieldValue = (field: string | undefined): boolean => {
 }
 
 const SignaturePreview = () => {
-  let clipboard
+  let clipboard: Clipboard
 
   const [isCopying, setIsCopying] = useState(false)
   const toast = useToast()
@@ -112,6 +112,7 @@ const SignaturePreview = () => {
 
   useEffect(() => {
     clipboard = new Clipboard('#copy-button')
+
     clipboard.on('success', (clipboardEvent) => {
       setIsCopying(true)
 
@@ -127,6 +128,15 @@ const SignaturePreview = () => {
         })
       }, 1500)
     })
+
+    clipboard.on('error', (clipboardEvent) => {
+      console.error('Action:', clipboardEvent.action)
+      console.error('Trigger:', clipboardEvent.trigger)
+    })
+
+    return () => {
+      clipboard.destroy()
+    }
   }, [])
 
   return (
