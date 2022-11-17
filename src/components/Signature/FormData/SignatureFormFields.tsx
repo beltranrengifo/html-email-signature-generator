@@ -81,7 +81,7 @@ const SignatureFormFields = () => {
                     onInputChange({ key: name, value: event.target.value })
                   }
                   pattern={pattern}
-                  placeholder={name}
+                  placeholder={label}
                   type={type}
                   value={state[name as keyof ISignatureState]}
                 />
@@ -94,13 +94,20 @@ const SignatureFormFields = () => {
         }
       )}
       <GridItem colSpan={2}>
-        <Textarea
-          placeholder={disclaimer?.label}
-          value={state.disclaimer}
-          onChange={(event) =>
-            onInputChange({ key: 'disclaimer', value: event.target.value })
-          }
-        />
+        <FormControl>
+          <FormLabel>{disclaimer?.label}</FormLabel>
+          <Textarea
+            placeholder={disclaimer?.label}
+            value={state.disclaimer}
+            onChange={(event) =>
+              onInputChange({ key: 'disclaimer', value: event.target.value })
+            }
+          />
+
+          <FormHelperText textAlign="left">
+            {disclaimer?.helperText}
+          </FormHelperText>
+        </FormControl>
       </GridItem>
     </>
   )

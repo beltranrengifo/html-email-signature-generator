@@ -101,6 +101,8 @@ const formFields: IField[] = [
     type: 'text',
   },
   {
+    helperText:
+      'Disclaimers inform recipients about what they can and cannot do with the emails sent from your company. A humble request to inform the sender in case the message was intended for someone else will usually work. Thanks to that, you could e.g. learn that something is wrong in your newsletter subscription list or even save a deal after simply misspelling your client’s email address.',
     label: 'Disclaimer',
     name: 'disclaimer',
     skipRender: true,
