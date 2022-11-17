@@ -17,6 +17,7 @@
     "clipboard": "^2.0.11",
     "framer-motion": "^6.5.1",
     "react": "^18.2.0",
+    "react-collapse": "^5.1.1",
     "react-dom": "^18.2.0",
     "react-icons": "^3.11.0",
     "react-scripts": "5.0.1",
@@ -49,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-collapse": "^5.0.1",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.5.0",

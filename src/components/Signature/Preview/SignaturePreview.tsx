@@ -1,8 +1,9 @@
+import { Collapse } from 'react-collapse'
+
 import {
   Alert,
   AlertIcon,
   Container,
-  Heading,
   useColorModeValue,
   Card,
   CardBody,
@@ -18,6 +19,7 @@ import { useSignatureContext } from 'context/signature-context'
 
 import useLocalStorage from 'hooks/useLocalStorage'
 import { useEffect, useState } from 'react'
+import { HeadingStyled } from 'components/Signature/FormData/SignatureFormData'
 
 export const isValidFieldValue = (field: string | undefined): boolean => {
   return field !== null && field !== '' && field !== undefined
@@ -28,6 +30,8 @@ const SignaturePreview = () => {
 
   const [isCopying, setIsCopying] = useState(false)
   const toast = useToast()
+
+  const [collapseIsOpen, setCollapseIsOpen] = useState(false)
 
   const {
     state,
@@ -121,7 +125,7 @@ const SignaturePreview = () => {
         clipboardEvent.clearSelection()
         toast({
           title: 'Signature in clipboard!',
-          description: 'Doubts? Check the docs below',
+          description: "Doubts about what's next? Check the docs 📑",
           status: 'success',
           duration: 9000,
           isClosable: true,
@@ -141,10 +145,19 @@ const SignaturePreview = () => {
 
   return (
     <Container>
-      <Heading as="h2" my={6} noOfLines={1} size="2xl" textAlign="left">
-        Preview your signature
-      </Heading>
-      <section>
+      <HeadingStyled as="h2" my={6} noOfLines={1} size="2xl" textAlign="left">
+        <span>Preview your signature 🧐</span>
+        <Button
+          onClick={() => setCollapseIsOpen(!collapseIsOpen)}
+          colorScheme="yellow"
+          ml="4px"
+          size="xs"
+          variant="outline"
+        >
+          {collapseIsOpen ? 'Collapse' : 'Show'}
+        </Button>
+      </HeadingStyled>
+      <Collapse isOpened={collapseIsOpen}>
         <Card size="lg" pb="40px">
           <CardHeader p={0} justifyContent="end" display="flex">
             <Button
@@ -377,7 +390,7 @@ const SignaturePreview = () => {
             )}
           </CardBody>
         </Card>
-      </section>
+      </Collapse>
     </Container>
   )
 }
