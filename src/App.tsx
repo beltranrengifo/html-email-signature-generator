@@ -12,7 +12,7 @@ export const App = () => (
     <Box textAlign="center" fontSize="xl">
       <Grid p={3}>
         <SignatureThemeSelector showTitle={false} />
-        <VStack spacing={8}>
+        <VStack spacing={8} pb={10}>
           <SignatureProvider>
             <>
               <SignatureFormData />

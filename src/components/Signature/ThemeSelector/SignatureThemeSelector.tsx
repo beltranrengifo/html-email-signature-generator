@@ -1,3 +1,4 @@
+import styled from '@emotion/styled'
 import {
   Heading,
   HStack,
@@ -10,6 +11,14 @@ import {
 import { SunIcon, MoonIcon } from '@chakra-ui/icons'
 import { useState } from 'react'
 
+const HeaderStyled = styled.header`
+  background-color: white;
+  padding: 8px 0;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+`
+
 const SignatureThemeSelector = ({ showTitle = true }: IProps) => {
   const { colorMode, toggleColorMode } = useColorMode()
   const text = useColorModeValue('dark', 'light')
@@ -19,7 +28,7 @@ const SignatureThemeSelector = ({ showTitle = true }: IProps) => {
   const onBlur = () => setFocused(false)
 
   return (
-    <header>
+    <HeaderStyled>
       {showTitle && (
         <Heading as="h2" my={6} noOfLines={1} size="3xl">
           Select the color mode
@@ -47,7 +56,7 @@ const SignatureThemeSelector = ({ showTitle = true }: IProps) => {
           <SunIcon />
         </Tooltip>
       </HStack>
-    </header>
+    </HeaderStyled>
   )
 }
 
