@@ -31,7 +31,7 @@ const UploadWidget = ({
           console.error(result)
         } else {
           if (result.event === 'success') {
-            onSuccess(result.info.url, fieldName)
+            onSuccess(result.info.secure_url, fieldName)
 
             toast({
               title: 'Upload completed.',
