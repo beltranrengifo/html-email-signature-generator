@@ -12,7 +12,7 @@ import { Collapse } from 'react-collapse'
 import useCollapse from 'hooks/useCollapse'
 import documentationItems from './documentationItems'
 
-const SignatureImplementDocs = () => {
+const SignatureDocumentation = () => {
   const [collapseIsOpen, CollapseButton] = useCollapse(false)
 
   return (
@@ -24,7 +24,7 @@ const SignatureImplementDocs = () => {
       <Collapse isOpened={collapseIsOpen}>
         <Accordion allowMultiple>
           {documentationItems.map(
-            ({ title, content }: { title: string; content: string }) => {
+            ({ title, content }: { title: string; content: JSX.Element }) => {
               return (
                 <AccordionItem key={title} textAlign="left">
                   <h2>
@@ -35,12 +35,9 @@ const SignatureImplementDocs = () => {
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel
-                    pb={4}
-                    pl={6}
-                    fontSize="xs"
-                    dangerouslySetInnerHTML={{ __html: content }}
-                  />
+                  <AccordionPanel pb={4} pl={6} fontSize="xs">
+                    {content}
+                  </AccordionPanel>
                 </AccordionItem>
               )
             }
@@ -51,4 +48,4 @@ const SignatureImplementDocs = () => {
   )
 }
 
-export default SignatureImplementDocs
+export default SignatureDocumentation
