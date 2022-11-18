@@ -19,8 +19,14 @@ const UploadWidget = ({
     widgetRef.current = (cloudinaryRef.current as any).createUploadWidget(
       {
         cropping: true,
-        cloudName: 'dap1oowul',
-        uploadPreset: 'ixo6nhfh',
+        dap1oowul:
+          process.env.NODE_ENV !== 'production'
+            ? 'dap1oowul'
+            : process.env.CLOUDINARY_CLOUD_NAME,
+        uploadPreset:
+          process.env.NODE_ENV !== 'production'
+            ? 'ixo6nhfh'
+            : process.env.CLOUDINARY_UPLOAD_PRESET,
         sources: ['local', 'camera', 'image_search', 'instagram', 'unsplash'],
         multiple: false,
         maxImageFileSize: 800000,
