@@ -16,7 +16,7 @@ const useCollapse = (initialState: boolean): [boolean, any] => {
       size="xs"
       variant="outline"
     >
-      {collapseIsOpen ? 'Collapse section' : 'Expand section'}
+      {collapseIsOpen ? 'Collapse' : 'Expand'}
     </Button>,
   ]
 }

@@ -1,7 +1,16 @@
-import { Container } from '@chakra-ui/react'
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+  Container,
+} from '@chakra-ui/react'
 import { HeadingStyled } from 'components/Signature/FormData/SignatureFormData'
 import { Collapse } from 'react-collapse'
 import useCollapse from 'hooks/useCollapse'
+import documentationItems from './documentationItems'
 
 const SignatureImplementDocs = () => {
   const [collapseIsOpen, CollapseButton] = useCollapse(false)
@@ -13,7 +22,30 @@ const SignatureImplementDocs = () => {
         {CollapseButton}
       </HeadingStyled>
       <Collapse isOpened={collapseIsOpen}>
-        <p>hola</p>
+        <Accordion allowMultiple>
+          {documentationItems.map(
+            ({ title, content }: { title: string; content: string }) => {
+              return (
+                <AccordionItem key={title} textAlign="left">
+                  <h2>
+                    <AccordionButton>
+                      <Box flex="1" textAlign="left">
+                        {title}
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel
+                    pb={4}
+                    pl={6}
+                    fontSize="xs"
+                    dangerouslySetInnerHTML={{ __html: content }}
+                  />
+                </AccordionItem>
+              )
+            }
+          )}
+        </Accordion>
       </Collapse>
     </Container>
   )
