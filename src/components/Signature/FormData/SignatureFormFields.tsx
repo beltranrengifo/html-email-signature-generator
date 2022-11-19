@@ -58,7 +58,13 @@ const SignatureFormFields = () => {
           if (skipRender) return null
 
           return (
-            <GridItem key={name}>
+            <GridItem
+              key={name}
+              mb={{
+                sm: 4,
+                md: 0,
+              }}
+            >
               <FormControl isRequired={required}>
                 <FormLabel>
                   {label}{' '}

@@ -34,8 +34,12 @@ const SignatureFormData = () => {
       </HeadingStyled>
       <Collapse isOpened={collapseIsOpen}>
         <Grid
-          templateColumns={{ sm: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
+          templateColumns="repeat(2, 1fr)"
           gap={6}
+          display={{
+            sm: 'block',
+            md: 'grid',
+          }}
         >
           <SignatureFormFields />
         </Grid>
