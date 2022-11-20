@@ -12,8 +12,9 @@ import {
   useToast,
 } from '@chakra-ui/react'
 
-import { CopyIcon, CheckIcon } from '@chakra-ui/icons'
+import { CopyIcon, CheckIcon, DownloadIcon } from '@chakra-ui/icons'
 import Clipboard from 'clipboard'
+import html2canvas from 'html2canvas'
 
 import { useSignatureContext } from 'context/signature-context'
 
@@ -107,6 +108,22 @@ const SignaturePreview = () => {
   const copyButtonText = isCopying ? 'Copied!' : 'Copy'
   const copyButtonIcon = isCopying ? <CheckIcon /> : <CopyIcon />
 
+  const downloadImageButtonText = isCopying
+    ? 'Image ready!'
+    : 'Download as image'
+  const downloadImageButtonIcon = isCopying ? <CheckIcon /> : <DownloadIcon />
+
+  const handleImageDownload = async (): Promise<void> => {
+    const signature = document.getElementById('signature-render')
+    if (!signature) return
+
+    const canvas = await html2canvas(signature, {
+      imageTimeout: 200000,
+      proxy: process.env.REACT_APP_API_PRODUCTION_DOMAIN,
+    })
+    document.body.appendChild(canvas)
+  }
+
   useEffect(() => {
     if (Object.keys(storedImages).length) {
       handleSetSignature({
@@ -154,6 +171,17 @@ const SignaturePreview = () => {
       <Collapse isOpened={collapseIsOpen}>
         <Card size="lg" pb="40px">
           <CardHeader p={0} justifyContent="end" display="flex">
+            <Button
+              colorScheme="gray"
+              disabled={!isValidFieldValue(name)}
+              leftIcon={downloadImageButtonIcon}
+              mr={2}
+              // eslint-disable-next-line @typescript-eslint/no-misused-promises
+              onClick={handleImageDownload}
+              variant="solid"
+            >
+              {downloadImageButtonText}
+            </Button>
             <Button
               colorScheme="gray"
               data-clipboard-target="#signature-render"
