@@ -22,10 +22,14 @@ module.exports = () => {
   app.get('/', cors(), validUrl, (req, res, next) => {
     switch (req.query.responseType) {
       case 'blob':
+        console.log('case bob')
         req.pipe(request(req.query.url).on('error', next)).pipe(res)
         break
       case 'text':
+        console.log('case text')
+        break
       default:
+        console.log('case default')
         request(
           { url: req.query.url, encoding: 'binary' },
           (error, response, body) => {

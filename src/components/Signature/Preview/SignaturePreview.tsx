@@ -119,7 +119,10 @@ const SignaturePreview = () => {
 
     const canvas = await html2canvas(signature, {
       imageTimeout: 200000,
-      proxy: process.env.REACT_APP_API_PRODUCTION_DOMAIN,
+      proxy:
+        process.env.NODE_ENV === 'production'
+          ? process.env.REACT_APP_API_PRODUCTION_DOMAIN
+          : process.env.REACT_APP_API_DEV_DOMAIN,
     })
     document.body.appendChild(canvas)
   }
