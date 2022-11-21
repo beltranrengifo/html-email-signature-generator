@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-vars */
 import {
   Button,
   Modal,
@@ -13,6 +11,7 @@ import {
   Spinner,
   Stack,
   Skeleton,
+  useToast,
 } from '@chakra-ui/react'
 import { DownloadIcon } from '@chakra-ui/icons'
 
@@ -29,6 +28,8 @@ const DownloadImage = () => {
   const { name } = state
 
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const toast = useToast()
 
   const downloadImageButtonText = isGeneratingImage
     ? 'Generating image...'
@@ -79,6 +80,15 @@ const DownloadImage = () => {
 
     link.href = (canvas as HTMLCanvasElement).toDataURL()
     link.click()
+
+    toast({
+      title: 'image downloaded!',
+      description:
+        'Check your Downloads folder or any location where you store the downloads',
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
+    })
   }
 
   return (
