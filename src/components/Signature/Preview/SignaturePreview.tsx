@@ -119,6 +119,7 @@ const SignaturePreview = () => {
 
     const canvas = await html2canvas(signature, {
       imageTimeout: 200000,
+      useCORS: true,
       proxy:
         process.env.NODE_ENV === 'production'
           ? process.env.REACT_APP_API_PRODUCTION_DOMAIN

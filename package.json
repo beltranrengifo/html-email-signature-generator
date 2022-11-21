@@ -19,6 +19,7 @@
     "express": "^4.18.2",
     "framer-motion": "^6.5.1",
     "html2canvas": "^1.4.1",
+    "html2canvas-proxy": "^1.0.1",
     "react": "^18.2.0",
     "react-collapse": "^5.1.1",
     "react-dom": "^18.2.0",
