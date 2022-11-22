@@ -7,7 +7,6 @@ import { SignatureProvider } from 'context/signature-context'
 import SignatureThemeSelector from 'components/Signature/ThemeSelector/SignatureThemeSelector'
 import Header from 'components/Header/Header'
 import SignatureDocumentation from 'components/Signature/ImplementDocs/SignatureDocumentation'
-import SignatureTemplateSelector from 'components/Signature/TemplateSelector/SignatureTemplateSelector'
 
 export const App = () => (
   <ChakraProvider theme={theme}>
@@ -21,7 +20,6 @@ export const App = () => (
           <SignatureProvider>
             <>
               <SignatureFormData />
-              <SignatureTemplateSelector />
               <SignaturePreview />
               <SignatureDocumentation />
             </>

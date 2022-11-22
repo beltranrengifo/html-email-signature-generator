@@ -10,6 +10,7 @@ import {
   Button,
   CardHeader,
   useToast,
+  Heading,
 } from '@chakra-ui/react'
 
 import templates, {
@@ -26,6 +27,7 @@ import { useEffect, useState } from 'react'
 import { HeadingStyled } from 'components/Signature/FormData/SignatureFormData'
 import useCollapse from 'hooks/useCollapse'
 import DownloadImage from './DownloadImage'
+import SignatureTemplateSelector from 'components/Signature/TemplateSelector/SignatureTemplateSelector'
 
 export const isValidFieldValue = (field: string | undefined): boolean => {
   return field !== null && field !== '' && field !== undefined
@@ -110,10 +112,21 @@ const SignaturePreview = () => {
   return (
     <Container>
       <HeadingStyled as="h2" my={6} noOfLines={1} size="2xl" textAlign="left">
-        <span>Preview signature 🧐</span>
+        <span>Grab your signature ✍️</span>
         {CollapseButton}
       </HeadingStyled>
       <Collapse isOpened={collapseIsOpen}>
+        <SignatureTemplateSelector />
+        <Heading
+          as="h3"
+          my={6}
+          noOfLines={1}
+          textAlign="left"
+          size="lg"
+          mt={10}
+        >
+          Preview result 🧐
+        </Heading>
         <Card size="lg" pb="40px">
           <CardHeader p={0} justifyContent="end" display="flex">
             <DownloadImage />
