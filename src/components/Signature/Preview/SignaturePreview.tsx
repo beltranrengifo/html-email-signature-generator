@@ -130,7 +130,15 @@ const SignaturePreview = () => {
           </CardHeader>
           <CardBody id="signature-render">
             {isValidFieldValue(name) ? (
-              <Template image={image} />
+              Template ? (
+                <Template image={image} />
+              ) : (
+                <Alert status="warning">
+                  <AlertIcon />
+                  We apologize, there&apos;s no template available for this
+                  selection. Please try another option 😢
+                </Alert>
+              )
             ) : (
               <Alert status="info">
                 <AlertIcon />
