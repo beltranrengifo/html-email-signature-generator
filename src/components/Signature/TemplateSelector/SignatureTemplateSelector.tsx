@@ -1,6 +1,12 @@
 import { Collapse } from 'react-collapse'
 
-import { Card, CardBody, Container, Stack } from '@chakra-ui/react'
+import {
+  Card,
+  CardBody,
+  Container,
+  Stack,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import { HeadingStyled } from 'components/Signature/FormData/SignatureFormData'
 import useCollapse from 'hooks/useCollapse'
 import { useSignatureContext } from 'context/signature-context'
@@ -26,6 +32,18 @@ const SignatureTemplateSelector = () => {
 
   const { template: currentTemplate } = state
 
+  const activeBgCardColor: string = useColorModeValue(
+    'var(--chakra-colors-chakra-subtle-bg)',
+    'var(--chakra-colors-teal-200)'
+  )
+
+  const activeTextCardColor: string = useColorModeValue(
+    'var(--chakra-colors-chakra-body-text)',
+    'var(--chakra-colors-gray-800)'
+  )
+
+  const isCardActive = (name: string): boolean => currentTemplate === name
+
   return (
     <Container>
       <HeadingStyled as="h2" my={6} noOfLines={1} size="2xl" textAlign="left">
@@ -38,13 +56,18 @@ const SignatureTemplateSelector = () => {
             return (
               <Card
                 _hover={{
-                  boxShadow:
-                    currentTemplate !== name && 'var(--chakra-shadows-md)',
+                  boxShadow: !isCardActive(name) && 'var(--chakra-shadows-md)',
                 }}
                 cursor="pointer"
                 key={name}
                 w="33.33%"
-                variant={currentTemplate === name ? 'filled' : 'elevated'}
+                bg={isCardActive(name) ? activeBgCardColor : 'var(--card-bg)'}
+                color={
+                  isCardActive(name)
+                    ? activeTextCardColor
+                    : 'var(--chakra-colors-chakra-body-text)'
+                }
+                variant={isCardActive(name) ? 'filled' : 'elevated'}
                 onClick={() => handleSetSignature({ template: name })}
               >
                 <CardBody>{title}</CardBody>
