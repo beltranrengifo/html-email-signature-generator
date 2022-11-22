@@ -54,6 +54,7 @@ const SignatureFormFields = () => {
           skipRender,
           type,
           tooltip,
+          colSpan = 1,
         }) => {
           if (skipRender) return null
 
@@ -64,6 +65,7 @@ const SignatureFormFields = () => {
                 sm: 4,
                 md: 0,
               }}
+              colSpan={colSpan}
             >
               <FormControl isRequired={required}>
                 <FormLabel>

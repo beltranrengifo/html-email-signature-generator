@@ -8,6 +8,7 @@ interface IField {
   skipRender?: boolean | undefined
   tooltip?: string | undefined
   type: string
+  colSpan?: number
 }
 
 const formFields: IField[] = [
@@ -64,6 +65,12 @@ const formFields: IField[] = [
     label: 'Phone',
     name: 'phone',
     type: 'tel',
+  },
+  {
+    label: 'Address',
+    name: 'address',
+    type: 'text',
+    colSpan: 2,
   },
   {
     label: 'LinkedIn URL',

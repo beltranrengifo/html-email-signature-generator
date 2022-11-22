@@ -16,6 +16,7 @@ const BigLogo = ({ image }: { image: string }) => {
     email,
     role,
     phone,
+    address,
     company,
     companyUrl,
     linkedinUrl,
@@ -37,13 +38,13 @@ const BigLogo = ({ image }: { image: string }) => {
         style={{ tableLayout: 'auto', marginTop: '40px' }}
       >
         <tbody>
-          <tr style={{ verticalAlign: 'bottom' }}>
+          <tr style={{ verticalAlign: 'top' }}>
             {isValidFieldValue(image) && (
-              <td style={{ width: '170px' }}>
+              <td style={{ width: '200px' }}>
                 <img
                   src={image}
-                  width="170"
-                  height="163"
+                  width="200"
+                  height="200"
                   alt="Email Signature Image"
                   title="Email Signature Image"
                 />
@@ -52,7 +53,7 @@ const BigLogo = ({ image }: { image: string }) => {
             <td style={{ width: '10px' }}></td>
 
             <td style={{ verticalAlign: 'top', textAlign: 'left' }}>
-              <p style={baseStyles}>
+              <p style={{ ...baseStyles, marginTop: 0 }}>
                 <strong>{name}</strong>
               </p>
               {isValidFieldValue(role) && (
@@ -107,6 +108,19 @@ const BigLogo = ({ image }: { image: string }) => {
                     {phone}
                   </p>
                 </a>
+              )}
+              {isValidFieldValue(address) && (
+                <p
+                  style={{
+                    ...baseStyles,
+                    fontSize: '12px',
+                    margin: 0,
+                    wordBreak: 'keep-all',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {address}
+                </p>
               )}
               {isValidFieldValue(company) && (
                 <a

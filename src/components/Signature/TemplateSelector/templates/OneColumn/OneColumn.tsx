@@ -18,6 +18,7 @@ const OneColumn = ({ image }: { image: string }) => {
     email,
     role,
     phone,
+    address,
     company,
     companyUrl,
     linkedinUrl,
@@ -104,9 +105,9 @@ const OneColumn = ({ image }: { image: string }) => {
                 <a href={companyUrl} target="_blank" rel="noreferrer">
                   <img
                     alt="Logo"
-                    style={{ width: '88px', height: 'auto', border: 0 }}
+                    style={{ width: '100px', height: 'auto', border: 0 }}
                     src={image}
-                    width="88"
+                    width="100"
                   />
                 </a>
               </td>
@@ -126,26 +127,34 @@ const OneColumn = ({ image }: { image: string }) => {
                       valign="top"
                     >
                       {isValidFieldValue(phone) && (
-                        <span>
+                        <div>
                           <span style={{ fontSize: '12px' }}>
                             <strong>Phone:</strong> {phone}
                             <br />
                           </span>
-                        </span>
+                        </div>
                       )}
                       {isValidFieldValue(email) && (
-                        <span>
+                        <div style={{ marginTop: '4px' }}>
                           <span style={{ fontSize: '12px' }}>
                             <strong>Email:</strong> {email}
                             <br />
                           </span>
-                        </span>
+                        </div>
+                      )}
+                      {isValidFieldValue(address) && (
+                        <div style={{ marginTop: '4px' }}>
+                          <span style={{ fontSize: '12px' }}>
+                            <strong>Address:</strong> {address}
+                            <br />
+                          </span>
+                        </div>
                       )}
                     </td>
                   </tr>
                   <tr>
                     <td
-                      style={{ verticalAlign: 'bottom', paddingTop: '5px' }}
+                      style={{ verticalAlign: 'bottom', paddingTop: '8px' }}
                       valign="bottom"
                     >
                       {isValidFieldValue(linkedinUrl) && (
