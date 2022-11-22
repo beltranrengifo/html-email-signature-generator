@@ -10,17 +10,7 @@ import {
 import { HeadingStyled } from 'components/Signature/FormData/SignatureFormData'
 import useCollapse from 'hooks/useCollapse'
 import { useSignatureContext } from 'context/signature-context'
-
-interface ITemplateCard {
-  name: string
-  title: string
-}
-
-const templateCards: ITemplateCard[] = [
-  { name: 'OneColumn', title: 'One column' },
-  { name: 'TwoColumns', title: 'Two columns' },
-  { name: 'TwoColumnsInverted', title: 'Two columns inverted' },
-]
+import { ITemplateCard, templateCards } from './templates'
 
 const SignatureTemplateSelector = () => {
   const [collapseIsOpen, CollapseButton] = useCollapse(false)

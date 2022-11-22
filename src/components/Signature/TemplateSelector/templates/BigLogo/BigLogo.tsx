@@ -3,7 +3,7 @@ import { isValidFieldValue } from '../../../Preview/SignaturePreview'
 import useBaseStyles from '../hooks/useBaseStyles'
 import useImages from '../hooks/useImages'
 
-const TwoColumns = ({ image }: { image: string }) => {
+const BigLogo = ({ image }: { image: string }) => {
   const { linkedInImage, instagramImage, twitterImage, tiktokImage } =
     useImages()
 
@@ -237,4 +237,4 @@ const TwoColumns = ({ image }: { image: string }) => {
   )
 }
 
-export default TwoColumns
+export default BigLogo
