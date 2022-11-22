@@ -40,6 +40,7 @@ const OneColumn = ({ image }: { image: string }) => {
           fontFamily,
           color,
           textAlign: 'left',
+          marginTop: '40px',
         }}
         cellSpacing={0}
         cellPadding={0}

@@ -1,6 +1,7 @@
 import { Collapse } from 'react-collapse'
 
 import {
+  Text,
   Card,
   CardBody,
   Container,
@@ -65,6 +66,10 @@ const SignatureTemplateSelector = () => {
             )
           })}
         </Stack>
+        <Text fontSize="sm" mt={4} textAlign="left">
+          You may want to expand the Preview Signature section at this point...
+          🤔
+        </Text>
       </Collapse>
     </Container>
   )
