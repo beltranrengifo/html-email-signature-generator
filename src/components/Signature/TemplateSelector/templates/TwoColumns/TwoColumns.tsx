@@ -1,36 +1,13 @@
-import { useColorModeValue } from '@chakra-ui/react'
 import { useSignatureContext } from 'context/signature-context'
 import { isValidFieldValue } from '../../../Preview/SignaturePreview'
+import useBaseStyles from '../hooks/useBaseStyles'
+import useImages from '../hooks/useImages'
 
 const TwoColumns = ({ image }: { image: string }) => {
-  const linkedInImage = useColorModeValue(
-    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636238/linkedin_iivhm4.png',
-    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636238/linkedin-w_jsjf9z.png'
-  )
-  const instagramImage = useColorModeValue(
-    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636237/instagram_xyajry.png',
-    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636237/instagram-w_ttsind.png'
-  )
-  const twitterImage = useColorModeValue(
-    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636238/twitter_ajqfha.png',
-    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636238/twitter-w_xtnz6v.png'
-  )
-  const tiktokImage = useColorModeValue(
-    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636238/tik-tok_sckheo.png',
-    'https://res.cloudinary.com/dap1oowul/image/upload/v1668636238/tik-tok-w_mnaehf.png'
-  )
+  const { linkedInImage, instagramImage, twitterImage, tiktokImage } =
+    useImages()
 
-  const color = useColorModeValue('#473741', '#d2d2d2')
-
-  const baseStyles = {
-    WebkitMarginBefore: 0,
-    WebkitMarginAfter: 0,
-    fontFamily: 'Trubuchet, Arial, sans-serif',
-    fontSize: '14px',
-    color,
-    letterSpacing: '1px',
-    margin: '12px 0 0 0',
-  }
+  const baseStyles = useBaseStyles()
 
   const { state } = useSignatureContext()
 
