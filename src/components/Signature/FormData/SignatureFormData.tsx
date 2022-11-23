@@ -1,7 +1,7 @@
 import { Collapse } from 'react-collapse'
 
 import { Box, Button, Container, Grid, Heading } from '@chakra-ui/react'
-import { DeleteIcon } from '@chakra-ui/icons'
+import { DeleteIcon, RepeatIcon } from '@chakra-ui/icons'
 
 import { useSignatureContext } from 'context/signature-context'
 import SignatureFormFields from './SignatureFormFields'
@@ -18,7 +18,7 @@ const SignatureFormData = () => {
   const [collapseIsOpen, CollapseButton] = useCollapse(true)
 
   const {
-    actions: { handleClearSignature },
+    actions: { handleClearSignature, handleRestoreSignature },
     state,
   } = useSignatureContext()
 
@@ -49,10 +49,20 @@ const SignatureFormData = () => {
             disabled={formIsEmpty}
             leftIcon={<DeleteIcon />}
             mt={8}
-            onClick={() => handleClearSignature()}
+            onClick={() => handleClearSignature(state)}
             variant="solid"
           >
             Clear form
+          </Button>
+          <Button
+            colorScheme="teal"
+            leftIcon={<RepeatIcon />}
+            mt={8}
+            ml={4}
+            onClick={() => handleRestoreSignature(state)}
+            variant="solid"
+          >
+            Restore defaults
           </Button>
         </Box>
       </Collapse>

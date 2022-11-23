@@ -8,7 +8,8 @@ interface ISignatureContext {
 
 interface ISignatureActions {
   handleSetSignature: (next: ISignatureState) => void
-  handleClearSignature: () => void
+  handleClearSignature: (next: ISignatureState) => void
+  handleRestoreSignature: (next: ISignatureState) => void
 }
 export interface ISignatureState {
   name?: string
@@ -69,11 +70,24 @@ const SignatureProvider = ({ children }: { children: JSX.Element }) => {
       })),
     []
   )
-  const handleClearSignature = useCallback(() => {
+
+  const handleRestoreSignature = useCallback((next: ISignatureState) => {
+    handleClearSignature(next)
+    setState({ ...initialState, template: next.template })
+  }, [])
+
+  const handleClearSignature = useCallback((next: ISignatureState) => {
     const reset: any = {}
 
-    Object.keys(state).forEach((key: string) => {
-      ;(reset as ISignatureState)[key as keyof ISignatureState] = ''
+    const doNotResetFields: string[] = ['template']
+
+    Object.keys(next).forEach((key: string) => {
+      if (doNotResetFields.includes(key)) {
+        ;(reset as ISignatureState)[key as keyof ISignatureState] =
+          next[key as keyof ISignatureState]
+      } else {
+        ;(reset as ISignatureState)[key as keyof ISignatureState] = ''
+      }
     })
 
     setState(reset)
@@ -83,6 +97,7 @@ const SignatureProvider = ({ children }: { children: JSX.Element }) => {
   const actions: ISignatureActions = {
     handleSetSignature,
     handleClearSignature,
+    handleRestoreSignature,
   }
 
   return (
