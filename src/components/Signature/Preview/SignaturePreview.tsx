@@ -112,7 +112,7 @@ const SignaturePreview = () => {
   return (
     <Container>
       <HeadingStyled as="h2" my={6} noOfLines={1} size="2xl" textAlign="left">
-        <span>Grab your signature ✍️</span>
+        <span>Get your signature ✍️</span>
         {CollapseButton}
       </HeadingStyled>
       <Collapse isOpened={collapseIsOpen}>
