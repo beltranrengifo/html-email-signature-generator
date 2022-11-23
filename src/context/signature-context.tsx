@@ -28,6 +28,8 @@ export interface ISignatureState {
   customUrlLabel?: string
   address?: string
   disclaimer?: string
+  bannerImageUrl?: string
+  bannerImageLink?: string
   template?: string
 }
 
@@ -49,6 +51,9 @@ const initialState: ISignatureState = {
   customUrl: 'https://www.my-custom-domain.com/',
   customUrlLabel: 'Visit my custom domain',
   address: '1 W 2nd St, Piqua, Kansas 66761 EE. UU.',
+  bannerImageUrl:
+    'https://res.cloudinary.com/dap1oowul/image/upload/v1669201042/qirfrewq1of45ydl2fye.webp',
+  bannerImageLink: 'https://en.wikipedia.org/wiki/Buster_Keaton',
   disclaimer:
     'The content of this message is confidential. If you have received it by mistake, please inform us by an email reply and then delete the message. It is forbidden to copy, forward, or in any way reveal the contents of this message to anyone. The integrity and security of this email cannot be guaranteed over the Internet. Therefore, the sender will not be held liable for any damage caused by the message.',
   template: 'BigLogo',

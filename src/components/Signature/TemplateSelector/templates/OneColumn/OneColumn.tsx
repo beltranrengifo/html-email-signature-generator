@@ -27,6 +27,8 @@ const OneColumn = ({ image }: { image: string }) => {
     tiktokUrl,
     customUrl,
     customUrlLabel,
+    bannerImageUrl,
+    bannerImageLink,
     disclaimer,
   } = state
 
@@ -150,6 +152,18 @@ const OneColumn = ({ image }: { image: string }) => {
                           </span>
                         </div>
                       )}
+                      {isValidFieldValue(customUrl) && (
+                        <div style={{ marginTop: '4px' }}>
+                          <a
+                            href={customUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ fontSize: '12px' }}
+                          >
+                            {customUrlLabel ?? null}
+                          </a>
+                        </div>
+                      )}
                     </td>
                   </tr>
                   <tr>
@@ -257,23 +271,34 @@ const OneColumn = ({ image }: { image: string }) => {
             ></td>
           </tr>
 
-          <tr>
-            <td
-              colSpan={2}
-              style={{ paddingTop: '15px', borderTop: '1px dotted #000' }}
-            >
-              {isValidFieldValue(customUrl) && (
-                <a href={customUrl} target="_blank" rel="noopener noreferrer">
-                  {customUrlLabel ?? null}
-                  <img
-                    src="banner.png"
-                    alt="Banner"
-                    style={{ maxWidth: '528px', height: 'auto', border: 0 }}
-                  />
-                </a>
-              )}
-            </td>
-          </tr>
+          {isValidFieldValue(bannerImageUrl) && (
+            <>
+              <tr>
+                <td
+                  style={{
+                    paddingTop: '15px',
+                    borderTop: '1px dotted #000',
+                    height: '10px',
+                  }}
+                  colSpan={3}
+                ></td>
+              </tr>
+              <tr>
+                <td colSpan={3} style={{ marginTop: '24px' }}>
+                  <a
+                    href={
+                      isValidFieldValue(bannerImageLink) ? bannerImageLink : '#'
+                    }
+                    style={{ textDecoration: 'none' }}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img src={bannerImageUrl} alt="banner image" />
+                  </a>
+                </td>
+              </tr>
+            </>
+          )}
 
           {isValidFieldValue(disclaimer) && (
             <tr>

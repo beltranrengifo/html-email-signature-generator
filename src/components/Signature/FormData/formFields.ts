@@ -31,7 +31,7 @@ const formFields: IField[] = [
     pattern: 'https://.*',
     renderUploadButton: true,
     tooltip:
-      'Paste your image URL or upload a new one. JPG, PNG and GIF formats. Max file size allowed 800KB. Recommended image max width 600px',
+      'Paste your image URL or upload a new one. JPG, PNG, WEBP and GIF formats. Max file size allowed 800KB. Recommended image max width 600px',
     type: 'url',
   },
   {
@@ -42,7 +42,7 @@ const formFields: IField[] = [
     pattern: 'https://.*',
     renderUploadButton: true,
     tooltip:
-      'Paste your image URL or upload a new one. JPG, PNG and GIF formats. Max file size allowed 400KB. Recommended image max width 600px',
+      'Paste your image URL or upload a new one. JPG, PNG, WEBP and GIF formats. Max file size allowed 400KB. Recommended image max width 600px',
     type: 'url',
   },
   {
@@ -106,6 +106,21 @@ const formFields: IField[] = [
     label: 'Custom URL label',
     name: 'customUrlLabel',
     type: 'text',
+  },
+  {
+    label: 'Banner Image URL',
+    name: 'bannerImageUrl',
+    pattern: 'https://.*',
+    renderUploadButton: true,
+    tooltip:
+      'Paste your banner image URL or upload a new one. JPG, PNG, WEBP and GIF formats. Max file size allowed 800KB. Recommended image max width 600px',
+    type: 'url',
+  },
+  {
+    label: 'Banner Image Link',
+    name: 'bannerImageLink',
+    pattern: 'https://.*',
+    type: 'url',
   },
   {
     helperText:

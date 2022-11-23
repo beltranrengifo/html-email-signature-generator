@@ -25,6 +25,8 @@ const BigLogo = ({ image }: { image: string }) => {
     tiktokUrl,
     customUrl,
     customUrlLabel,
+    bannerImageUrl,
+    bannerImageLink,
     disclaimer,
   } = state
 
@@ -36,6 +38,7 @@ const BigLogo = ({ image }: { image: string }) => {
         border={0}
         cellPadding="0"
         style={{ tableLayout: 'auto', marginTop: '40px' }}
+        width="532px"
       >
         <tbody>
           <tr style={{ verticalAlign: 'top' }}>
@@ -224,6 +227,27 @@ const BigLogo = ({ image }: { image: string }) => {
               )}
             </td>
           </tr>
+          {isValidFieldValue(bannerImageUrl) && (
+            <>
+              <tr>
+                <td style={{ height: '25px' }} colSpan={3}></td>
+              </tr>
+              <tr>
+                <td colSpan={3} style={{ marginTop: '24px' }}>
+                  <a
+                    href={
+                      isValidFieldValue(bannerImageLink) ? bannerImageLink : '#'
+                    }
+                    style={{ textDecoration: 'none' }}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img src={bannerImageUrl} alt="banner image" />
+                  </a>
+                </td>
+              </tr>
+            </>
+          )}
           {isValidFieldValue(disclaimer) && (
             <>
               <tr>
