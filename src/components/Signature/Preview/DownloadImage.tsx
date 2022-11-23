@@ -12,6 +12,7 @@ import {
   Stack,
   Skeleton,
   useToast,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import { DownloadIcon } from '@chakra-ui/icons'
 
@@ -31,6 +32,8 @@ const DownloadImage = () => {
 
   const toast = useToast()
 
+  const canvasBgColor = useColorModeValue('white', '#2d3748')
+
   const downloadImageButtonText = isGeneratingImage
     ? 'Generating image...'
     : 'Download signature image'
@@ -49,6 +52,7 @@ const DownloadImage = () => {
       if (!signature) return
 
       const canvas = await html2canvas(signature, {
+        backgroundColor: canvasBgColor,
         imageTimeout: 200000,
         useCORS: true,
         proxy:
