@@ -1,15 +1,14 @@
-import { useColorModeValue } from '@chakra-ui/react'
 import { useSignatureContext } from 'context/signature-context'
+import { useUiContext } from 'context/ui-context'
 import { isValidFieldValue } from '../../../Preview/SignaturePreview'
-import useBaseStyles from '../hooks/useBaseStyles'
 import useImages from '../hooks/useImages'
 
 const OneColumn = ({ image }: { image: string }) => {
   const { linkedInImage, instagramImage, twitterImage, tiktokImage } =
     useImages()
 
-  const { fontFamily, color } = useBaseStyles('#285E61', '#E6FFFA')
-  const signatureNameColor = useColorModeValue('#234E52', '#B2F5EA')
+  const { state: uiState } = useUiContext()
+  const { currentColor, baseStyles } = uiState
 
   const { state } = useSignatureContext()
 
@@ -40,8 +39,8 @@ const OneColumn = ({ image }: { image: string }) => {
         style={{
           width: '430px',
           fontSize: '11pt',
-          fontFamily,
-          color,
+          fontFamily: baseStyles.fontFamily,
+          color: currentColor,
           textAlign: 'left',
           marginTop: '40px',
         }}
@@ -56,9 +55,7 @@ const OneColumn = ({ image }: { image: string }) => {
               style={{ borderBottom: '1px dotted #000', paddingBottom: '10px' }}
             >
               <strong>
-                <span style={{ fontSize: '18pt', color: signatureNameColor }}>
-                  {name}
-                </span>
+                <span style={{ fontSize: '18pt' }}>{name}</span>
               </strong>
               <span>
                 <br />
@@ -308,7 +305,6 @@ const OneColumn = ({ image }: { image: string }) => {
                   paddingTop: '15px',
                   lineHeight: '13px',
                   fontSize: '7pt',
-                  color: '#959595',
                 }}
               >
                 {disclaimer}

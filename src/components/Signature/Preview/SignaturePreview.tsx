@@ -28,36 +28,39 @@ import { HeadingStyled } from 'components/Signature/FormData/SignatureFormData'
 import useCollapse from 'hooks/useCollapse'
 import DownloadImage from './DownloadImage'
 import SignatureTemplateSelector from 'components/Signature/TemplateSelector/SignatureTemplateSelector'
+import ColorPicker from 'components/ColorPicker/ColorPicker'
 
 export const isValidFieldValue = (field: string | undefined): boolean => {
   return field !== null && field !== '' && field !== undefined
 }
 
-const SignaturePreview = () => {
-  let clipboard: Clipboard
+const cleanUpEmptyValues = (obj: any): void => {
+  Object.keys(obj).forEach((key) => {
+    if (obj[key] === '') {
+      delete obj[key]
+    }
+  })
+}
 
+const SignaturePreview = () => {
   const [collapseIsOpen, CollapseButton] = useCollapse(false)
 
+  let clipboard: Clipboard
   const [isCopying, setIsCopying] = useState(false)
   const toast = useToast()
 
   const {
-    state,
+    state: signatureState,
     actions: { handleSetSignature },
   } = useSignatureContext()
 
-  const { name, imageUrl, darkImageUrl, template } = state
+  const { name, imageUrl, darkImageUrl, template } = signatureState
 
   const [storedImages] = useLocalStorage('uploadedImages', {
     imageUrl: '',
     darkImageUrl: '',
   })
-
-  Object.keys(storedImages).forEach((key) => {
-    if (storedImages[key] === '') {
-      delete storedImages[key]
-    }
-  })
+  cleanUpEmptyValues(storedImages)
 
   const image: string | any = useColorModeValue(
     storedImages?.imageUrl || imageUrl,
@@ -128,18 +131,22 @@ const SignaturePreview = () => {
           Preview result 🧐
         </Heading>
         <Card size="lg" pb="40px">
-          <CardHeader p={0} justifyContent="end" display="flex">
-            <DownloadImage />
-            <Button
-              colorScheme="gray"
-              data-clipboard-target="#signature-render"
-              disabled={!isValidFieldValue(name)}
-              id="copy-button"
-              leftIcon={copyButtonIcon}
-              variant="solid"
-            >
-              {copyButtonText}
-            </Button>
+          <CardHeader p={0} justifyContent="space-between" display="flex">
+            <ColorPicker label="Change Text Color" />
+
+            <span>
+              <DownloadImage />
+              <Button
+                colorScheme="gray"
+                data-clipboard-target="#signature-render"
+                disabled={!isValidFieldValue(name)}
+                id="copy-button"
+                leftIcon={copyButtonIcon}
+                variant="solid"
+              >
+                {copyButtonText}
+              </Button>
+            </span>
           </CardHeader>
           <CardBody id="signature-render">
             {isValidFieldValue(name) ? (

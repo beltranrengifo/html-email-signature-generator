@@ -1,13 +1,14 @@
 import { useSignatureContext } from 'context/signature-context'
+import { useUiContext } from 'context/ui-context'
 import { isValidFieldValue } from '../../../Preview/SignaturePreview'
-import useBaseStyles from '../hooks/useBaseStyles'
 import useImages from '../hooks/useImages'
 
 const BigLogo = ({ image }: { image: string }) => {
   const { linkedInImage, instagramImage, twitterImage, tiktokImage } =
     useImages()
 
-  const baseStyles = useBaseStyles()
+  const { state: uiState } = useUiContext()
+  const { currentColor, baseStyles } = uiState
 
   const { state } = useSignatureContext()
 
@@ -37,7 +38,7 @@ const BigLogo = ({ image }: { image: string }) => {
       <table
         border={0}
         cellPadding="0"
-        style={{ tableLayout: 'auto', marginTop: '40px' }}
+        style={{ tableLayout: 'auto', marginTop: '40px', color: currentColor }}
         width="532px"
       >
         <tbody>
