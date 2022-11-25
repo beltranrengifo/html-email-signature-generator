@@ -29,6 +29,7 @@ import useCollapse from 'hooks/useCollapse'
 import DownloadImage from './DownloadImage'
 import SignatureTemplateSelector from 'components/Signature/TemplateSelector/SignatureTemplateSelector'
 import ColorPicker from 'components/ColorPicker/ColorPicker'
+import { useUiContext } from 'context/ui-context'
 
 export const isValidFieldValue = (field: string | undefined): boolean => {
   return field !== null && field !== '' && field !== undefined
@@ -53,8 +54,10 @@ const SignaturePreview = () => {
     state: signatureState,
     actions: { handleSetSignature },
   } = useSignatureContext()
+  const { name, imageUrl, darkImageUrl } = signatureState
 
-  const { name, imageUrl, darkImageUrl, template } = signatureState
+  const { state: uiState } = useUiContext()
+  const { template } = uiState
 
   const [storedImages] = useLocalStorage('uploadedImages', {
     imageUrl: '',

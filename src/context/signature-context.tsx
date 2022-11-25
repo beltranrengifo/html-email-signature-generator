@@ -30,7 +30,6 @@ export interface ISignatureState {
   disclaimer?: string
   bannerImageUrl?: string
   bannerImageLink?: string
-  template?: string
 }
 
 const initialState: ISignatureState = {
@@ -56,7 +55,6 @@ const initialState: ISignatureState = {
   bannerImageLink: 'https://en.wikipedia.org/wiki/Buster_Keaton',
   disclaimer:
     'The content of this message is confidential. If you have received it by mistake, please inform us by an email reply and then delete the message. It is forbidden to copy, forward, or in any way reveal the contents of this message to anyone. The integrity and security of this email cannot be guaranteed over the Internet. Therefore, the sender will not be held liable for any damage caused by the message.',
-  template: 'BigLogo',
 }
 
 const SignatureContext = createContext<ISignatureContext | null>(null)
@@ -76,23 +74,16 @@ const SignatureProvider = ({ children }: { children: JSX.Element }) => {
     []
   )
 
-  const handleRestoreSignature = useCallback((next: ISignatureState) => {
-    handleClearSignature(next)
-    setState({ ...initialState, template: next.template })
+  const handleRestoreSignature = useCallback(() => {
+    handleClearSignature()
+    setState({ ...initialState })
   }, [])
 
-  const handleClearSignature = useCallback((next: ISignatureState) => {
+  const handleClearSignature = useCallback(() => {
     const reset: any = {}
 
-    const doNotResetFields: string[] = ['template']
-
-    Object.keys(next).forEach((key: string) => {
-      if (doNotResetFields.includes(key)) {
-        ;(reset as ISignatureState)[key as keyof ISignatureState] =
-          next[key as keyof ISignatureState]
-      } else {
-        ;(reset as ISignatureState)[key as keyof ISignatureState] = ''
-      }
+    Object.keys(state).forEach((key: string) => {
+      ;(reset as ISignatureState)[key as keyof ISignatureState] = ''
     })
 
     setState(reset)

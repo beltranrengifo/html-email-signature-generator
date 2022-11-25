@@ -5,16 +5,16 @@ import {
   Stack,
   useColorModeValue,
 } from '@chakra-ui/react'
-import { useSignatureContext } from 'context/signature-context'
+import { useUiContext } from 'context/ui-context'
 import { ITemplateCard, templateCards } from './templates'
 
 const SignatureTemplateSelector = () => {
   const {
-    actions: { handleSetSignature },
-    state,
-  } = useSignatureContext()
+    state: uiState,
+    actions: { handleSetTemplate },
+  } = useUiContext()
 
-  const { template: currentTemplate } = state
+  const { template: currentTemplate } = uiState
 
   const activeBgCardColor: string = useColorModeValue(
     'var(--chakra-colors-chakra-subtle-bg)',
@@ -58,7 +58,7 @@ const SignatureTemplateSelector = () => {
                   : 'var(--chakra-colors-chakra-body-text)'
               }
               variant={isCardActive(name) ? 'filled' : 'elevated'}
-              onClick={() => handleSetSignature({ template: name })}
+              onClick={() => handleSetTemplate(name)}
             >
               <CardBody>{title}</CardBody>
             </Card>

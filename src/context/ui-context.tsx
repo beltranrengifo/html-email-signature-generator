@@ -20,6 +20,7 @@ interface IUiState {
   nameColorDark: string
   nameCurrentColor: string
   baseStyles: any
+  template: string
 }
 
 interface IUiActions {
@@ -27,6 +28,7 @@ interface IUiActions {
   handleSetBaseDarkColor: (color: string) => void
   handleSetNameLightColor: (color: string) => void
   handleSetNameDarkColor: (color: string) => void
+  handleSetTemplate: (template: string) => void
 }
 
 const BASE_STYLES = {
@@ -59,6 +61,7 @@ const UiProvider = ({ children }: { children: JSX.Element }) => {
     nameCurrentColor:
       colorMode === 'light' ? NAME_COLOR_LIGHT : NAME_COLOR_DARK,
     baseStyles: BASE_STYLES,
+    template: 'BigLogo',
   })
 
   useEffect(() => {
@@ -107,12 +110,21 @@ const UiProvider = ({ children }: { children: JSX.Element }) => {
       })),
     []
   )
+  const handleSetTemplate = useCallback(
+    (template: string) =>
+      setState((prev: IUiState) => ({
+        ...prev,
+        template,
+      })),
+    []
+  )
 
   const actions: IUiActions = {
     handleSetBaseLightColor,
     handleSetBaseDarkColor,
     handleSetNameLightColor,
     handleSetNameDarkColor,
+    handleSetTemplate,
   }
 
   return (
