@@ -132,7 +132,7 @@ const SignaturePreview = () => {
         </Heading>
         <Card size="lg" pb="40px">
           <CardHeader p={0} justifyContent="space-between" display="flex">
-            <ColorPicker label="Change Text Color" />
+            <ColorPicker label="Choose colors" />
 
             <span>
               <DownloadImage />

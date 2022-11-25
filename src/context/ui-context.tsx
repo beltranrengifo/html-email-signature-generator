@@ -13,15 +13,20 @@ interface IUiContext {
 }
 
 interface IUiState {
-  colorLight: string
-  colorDark: string
+  baseColorLight: string
+  baseColorDark: string
+  baseCurrentColor: string
+  nameColorLight: string
+  nameColorDark: string
+  nameCurrentColor: string
   baseStyles: any
-  currentColor: string
 }
 
 interface IUiActions {
-  handleSetUiLightColor: (color: string) => void
-  handleSetUiDarkColor: (color: string) => void
+  handleSetBaseLightColor: (color: string) => void
+  handleSetBaseDarkColor: (color: string) => void
+  handleSetNameLightColor: (color: string) => void
+  handleSetNameDarkColor: (color: string) => void
 }
 
 const BASE_STYLES = {
@@ -36,48 +41,78 @@ const BASE_STYLES = {
 const UiContext = createContext<IUiContext | null>(null)
 UiContext.displayName = 'UiContext'
 
-const COLOR_LIGHT = '#473741'
-const COLOR_DARK = '#d2d2d2'
+const BASE_COLOR_LIGHT = '#473741'
+const BASE_COLOR_DARK = '#d2d2d2'
+const NAME_COLOR_LIGHT = '#2d2329'
+const NAME_COLOR_DARK = '#e4dede'
 
 const UiProvider = ({ children }: { children: JSX.Element }) => {
   const { colorMode } = useColorMode()
 
   const [state, setState] = useState({
-    colorLight: COLOR_LIGHT,
-    colorDark: COLOR_DARK,
-    currentColor: colorMode === 'light' ? COLOR_LIGHT : COLOR_DARK,
+    baseColorLight: BASE_COLOR_LIGHT,
+    baseColorDark: BASE_COLOR_DARK,
+    baseCurrentColor:
+      colorMode === 'light' ? BASE_COLOR_LIGHT : BASE_COLOR_DARK,
+    nameColorLight: NAME_COLOR_LIGHT,
+    nameColorDark: NAME_COLOR_DARK,
+    nameCurrentColor:
+      colorMode === 'light' ? NAME_COLOR_LIGHT : NAME_COLOR_DARK,
     baseStyles: BASE_STYLES,
   })
 
   useEffect(() => {
     setState((prev: IUiState) => ({
       ...prev,
-      currentColor: colorMode === 'light' ? prev.colorLight : prev.colorDark,
+      baseCurrentColor:
+        colorMode === 'light' ? prev.baseColorLight : prev.baseColorDark,
+      nameCurrentColor:
+        colorMode === 'light' ? prev.nameColorLight : prev.nameColorDark,
     }))
   }, [colorMode])
 
-  const handleSetUiLightColor = useCallback(
+  const handleSetBaseLightColor = useCallback(
     (color: string) =>
       setState((prev: IUiState) => ({
         ...prev,
-        colorLight: color,
-        currentColor: color,
+        baseColorLight: color,
+        baseCurrentColor: color,
       })),
     []
   )
-  const handleSetUiDarkColor = useCallback(
+  const handleSetBaseDarkColor = useCallback(
     (color: string) =>
       setState((prev: IUiState) => ({
         ...prev,
-        colorDark: color,
-        currentColor: color,
+        baseColorDark: color,
+        baseCurrentColor: color,
+      })),
+    []
+  )
+  const handleSetNameLightColor = useCallback(
+    (color: string) =>
+      setState((prev: IUiState) => ({
+        ...prev,
+        nameColorLight: color,
+        nameCurrentColor: color,
+      })),
+    []
+  )
+  const handleSetNameDarkColor = useCallback(
+    (color: string) =>
+      setState((prev: IUiState) => ({
+        ...prev,
+        nameColorDark: color,
+        nameCurrentColor: color,
       })),
     []
   )
 
   const actions: IUiActions = {
-    handleSetUiLightColor,
-    handleSetUiDarkColor,
+    handleSetBaseLightColor,
+    handleSetBaseDarkColor,
+    handleSetNameLightColor,
+    handleSetNameDarkColor,
   }
 
   return (

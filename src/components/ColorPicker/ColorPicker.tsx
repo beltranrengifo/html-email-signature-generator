@@ -1,4 +1,10 @@
 import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
   Button,
   Menu,
   MenuButton,
@@ -6,32 +12,76 @@ import {
   useColorMode,
 } from '@chakra-ui/react'
 import { useUiContext } from 'context/ui-context'
-import { SketchPicker } from 'react-color'
+import { ChromePicker } from 'react-color'
 import { EditIcon } from '@chakra-ui/icons'
 
 const ColorPicker = ({ label }: { label: string }) => {
   const {
     state: uiState,
-    actions: { handleSetUiLightColor, handleSetUiDarkColor },
+    actions: {
+      handleSetBaseLightColor,
+      handleSetBaseDarkColor,
+      handleSetNameLightColor,
+      handleSetNameDarkColor,
+    },
   } = useUiContext()
-  const { colorLight, colorDark } = uiState
+  const { baseColorLight, baseColorDark, nameColorLight, nameColorDark } =
+    uiState
 
   const { colorMode } = useColorMode()
-  const currentColor = colorMode === 'light' ? colorLight : colorDark
+  const currentBaseColor =
+    colorMode === 'light' ? baseColorLight : baseColorDark
+  const currentNameColor =
+    colorMode === 'light' ? nameColorLight : nameColorDark
+
   return (
-    <Menu placement="left-start">
+    <Menu placement="left-start" closeOnSelect={false}>
       <MenuButton as={Button} leftIcon={<EditIcon />}>
         {label}
       </MenuButton>
       <MenuList border={0} p={0}>
-        <SketchPicker
-          color={currentColor}
-          onChangeComplete={({ hex }) =>
-            colorMode === 'light'
-              ? handleSetUiLightColor(hex)
-              : handleSetUiDarkColor(hex)
-          }
-        />
+        <Accordion allowMultiple>
+          <AccordionItem border={0} minW="257px">
+            <h2>
+              <AccordionButton>
+                <Box flex="1" textAlign="left">
+                  Headline color
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>
+              <ChromePicker
+                color={currentNameColor}
+                onChangeComplete={({ hex }) =>
+                  colorMode === 'light'
+                    ? handleSetNameLightColor(hex)
+                    : handleSetNameDarkColor(hex)
+                }
+              />
+            </AccordionPanel>
+          </AccordionItem>
+          <AccordionItem border={0} minW="257px">
+            <h2>
+              <AccordionButton>
+                <Box flex="1" textAlign="left">
+                  Base color
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>
+              <ChromePicker
+                color={currentBaseColor}
+                onChangeComplete={({ hex }) =>
+                  colorMode === 'light'
+                    ? handleSetBaseLightColor(hex)
+                    : handleSetBaseDarkColor(hex)
+                }
+              />
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
       </MenuList>
     </Menu>
   )

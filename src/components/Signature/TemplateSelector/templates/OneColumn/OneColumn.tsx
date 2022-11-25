@@ -8,7 +8,7 @@ const OneColumn = ({ image }: { image: string }) => {
     useImages()
 
   const { state: uiState } = useUiContext()
-  const { currentColor, baseStyles } = uiState
+  const { baseCurrentColor, nameCurrentColor, baseStyles } = uiState
 
   const { state } = useSignatureContext()
 
@@ -40,7 +40,7 @@ const OneColumn = ({ image }: { image: string }) => {
           width: '430px',
           fontSize: '11pt',
           fontFamily: baseStyles.fontFamily,
-          color: currentColor,
+          color: baseCurrentColor,
           textAlign: 'left',
           marginTop: '40px',
         }}
@@ -55,25 +55,34 @@ const OneColumn = ({ image }: { image: string }) => {
               style={{ borderBottom: '1px dotted #000', paddingBottom: '10px' }}
             >
               <strong>
-                <span style={{ fontSize: '18pt' }}>{name}</span>
+                <span style={{ fontSize: '18pt', color: nameCurrentColor }}>
+                  {name}
+                </span>
               </strong>
               <span>
                 <br />
               </span>
               {isValidFieldValue(role) && (
-                <strong style={{ fontSize: '10pt' }}>{role}</strong>
+                <strong style={{ fontSize: '10pt', color: nameCurrentColor }}>
+                  {role}
+                </strong>
               )}
               {isValidFieldValue(company) && (
                 <strong>
                   <span>
-                    <span> | </span>
+                    <span style={{ color: nameCurrentColor }}> | </span>
                     <a
                       href={company}
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{ textDecoration: 'none' }}
                     >
-                      <span style={{ fontSize: '10pt' }}> {company}</span>
+                      <span
+                        style={{ fontSize: '10pt', color: nameCurrentColor }}
+                      >
+                        {' '}
+                        {company}
+                      </span>
                     </a>
                   </span>
                 </strong>

@@ -8,7 +8,7 @@ const BigLogo = ({ image }: { image: string }) => {
     useImages()
 
   const { state: uiState } = useUiContext()
-  const { currentColor, baseStyles } = uiState
+  const { baseCurrentColor, nameCurrentColor, baseStyles } = uiState
 
   const { state } = useSignatureContext()
 
@@ -38,7 +38,11 @@ const BigLogo = ({ image }: { image: string }) => {
       <table
         border={0}
         cellPadding="0"
-        style={{ tableLayout: 'auto', marginTop: '40px', color: currentColor }}
+        style={{
+          tableLayout: 'auto',
+          marginTop: '40px',
+          color: baseCurrentColor,
+        }}
         width="532px"
       >
         <tbody>
@@ -58,10 +62,14 @@ const BigLogo = ({ image }: { image: string }) => {
 
             <td style={{ verticalAlign: 'top', textAlign: 'left' }}>
               <p style={{ ...baseStyles, marginTop: 0 }}>
-                <strong>{name}</strong>
+                <strong style={{ color: nameCurrentColor }}>{name}</strong>
               </p>
               {isValidFieldValue(role) && (
-                <p style={{ ...baseStyles, margin: 0 }}>{role}</p>
+                <p
+                  style={{ ...baseStyles, margin: 0, color: nameCurrentColor }}
+                >
+                  {role}
+                </p>
               )}
               {isValidFieldValue(email) && (
                 <a
