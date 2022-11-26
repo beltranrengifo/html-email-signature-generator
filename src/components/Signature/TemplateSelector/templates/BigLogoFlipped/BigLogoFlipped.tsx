@@ -13,6 +13,7 @@ const BigLogoFipped = ({ image }: { image: string }) => {
     nameCurrentColor,
     disclaimerCurrentColor,
     baseStyles,
+    font,
   } = uiState
 
   const { state } = useSignatureContext()
@@ -47,6 +48,7 @@ const BigLogoFipped = ({ image }: { image: string }) => {
           tableLayout: 'auto',
           marginTop: '40px',
           color: baseCurrentColor,
+          fontFamily: font,
         }}
         width="532px"
       >

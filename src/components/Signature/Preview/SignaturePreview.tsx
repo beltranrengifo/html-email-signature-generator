@@ -11,6 +11,7 @@ import {
   CardHeader,
   useToast,
   Heading,
+  Box,
 } from '@chakra-ui/react'
 
 import templates, {
@@ -30,6 +31,7 @@ import DownloadImage from './DownloadImage'
 import SignatureTemplateSelector from 'components/Signature/TemplateSelector/SignatureTemplateSelector'
 import ColorPicker from 'components/ColorPicker/ColorPicker'
 import { useUiContext } from 'context/ui-context'
+import FontPicker from 'components/FontPicker/FontPicker'
 
 export const isValidFieldValue = (field: string | undefined): boolean => {
   return field !== null && field !== '' && field !== undefined
@@ -133,28 +135,32 @@ const SignaturePreview = () => {
         >
           Preview result 🧐
         </Heading>
-        <Card size="lg" pb="40px">
+        <Card size="lg">
           <CardHeader p={0} justifyContent="space-between" display="flex">
             <ColorPicker label="Choose colors" />
-
-            <span>
-              <DownloadImage />
-              <Button
-                colorScheme="gray"
-                data-clipboard-target="#signature-render"
-                disabled={!isValidFieldValue(name)}
-                id="copy-button"
-                leftIcon={copyButtonIcon}
-                variant="solid"
-              >
-                {copyButtonText}
-              </Button>
-            </span>
+            <FontPicker label="Choose font" />
           </CardHeader>
-          <CardBody id="signature-render">
+          <CardBody id="signature-render" pb={0} pl={0} pr={0}>
             {isValidFieldValue(name) ? (
               Template ? (
-                <Template image={image} />
+                <>
+                  <Box p="var(--card-padding)">
+                    <Template image={image} />
+                  </Box>
+                  <Box mt={12} display="flex" justifyContent="space-between">
+                    <DownloadImage />
+                    <Button
+                      colorScheme="gray"
+                      data-clipboard-target="#signature-render"
+                      disabled={!isValidFieldValue(name)}
+                      id="copy-button"
+                      leftIcon={copyButtonIcon}
+                      variant="solid"
+                    >
+                      {copyButtonText}
+                    </Button>
+                  </Box>
+                </>
               ) : (
                 <Alert status="warning">
                   <AlertIcon />

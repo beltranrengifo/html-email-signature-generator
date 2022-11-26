@@ -8,12 +8,8 @@ const OneColumn = ({ image }: { image: string }) => {
     useImages()
 
   const { state: uiState } = useUiContext()
-  const {
-    baseCurrentColor,
-    nameCurrentColor,
-    disclaimerCurrentColor,
-    baseStyles,
-  } = uiState
+  const { baseCurrentColor, nameCurrentColor, disclaimerCurrentColor, font } =
+    uiState
 
   const { state } = useSignatureContext()
 
@@ -44,10 +40,10 @@ const OneColumn = ({ image }: { image: string }) => {
         style={{
           width: '430px',
           fontSize: '11pt',
-          fontFamily: baseStyles.fontFamily,
           color: baseCurrentColor,
           textAlign: 'left',
           marginTop: '40px',
+          fontFamily: font,
         }}
         cellSpacing={0}
         cellPadding={0}
@@ -133,7 +129,6 @@ const OneColumn = ({ image }: { image: string }) => {
                     <td
                       style={{
                         fontSize: '9pt',
-                        fontFamily: 'Arial, sans-serif',
                         verticalAlign: 'top',
                         lineHeight: '15px',
                       }}

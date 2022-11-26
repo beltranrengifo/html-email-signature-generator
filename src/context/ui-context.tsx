@@ -24,6 +24,7 @@ interface IUiState {
   disclaimerCurrentColor: string
   baseStyles: any
   template: string
+  font: string
 }
 
 interface IUiActions {
@@ -34,12 +35,12 @@ interface IUiActions {
   handleSetDisclaimerLightColor: (color: string) => void
   handleSetDisclaimerDarkColor: (color: string) => void
   handleSetTemplate: (template: string) => void
+  handleSetFont: (font: string) => void
 }
 
 const BASE_STYLES = {
   WebkitMarginBefore: 0,
   WebkitMarginAfter: 0,
-  fontFamily: 'Trubuchet, Arial, sans-serif',
   fontSize: '14px',
   letterSpacing: '1px',
   margin: '12px 0 0 0',
@@ -54,6 +55,7 @@ const NAME_COLOR_LIGHT = '#2d2329'
 const NAME_COLOR_DARK = '#e4dede'
 const DISCLAIMER_COLOR_LIGHT = '#2f2a2d'
 const DISCLAIMER_COLOR_DARK = '#b4b0b0'
+const DEFAULT_FONT = 'Trebuchet MS'
 
 const UiProvider = ({ children }: { children: JSX.Element }) => {
   const { colorMode } = useColorMode()
@@ -73,6 +75,7 @@ const UiProvider = ({ children }: { children: JSX.Element }) => {
       colorMode === 'light' ? DISCLAIMER_COLOR_LIGHT : DISCLAIMER_COLOR_DARK,
     baseStyles: BASE_STYLES,
     template: 'BigLogo',
+    font: DEFAULT_FONT,
   })
 
   useEffect(() => {
@@ -151,6 +154,14 @@ const UiProvider = ({ children }: { children: JSX.Element }) => {
       })),
     []
   )
+  const handleSetFont = useCallback(
+    (font: string) =>
+      setState((prev: IUiState) => ({
+        ...prev,
+        font,
+      })),
+    []
+  )
 
   const actions: IUiActions = {
     handleSetBaseLightColor,
@@ -160,6 +171,7 @@ const UiProvider = ({ children }: { children: JSX.Element }) => {
     handleSetDisclaimerLightColor,
     handleSetDisclaimerDarkColor,
     handleSetTemplate,
+    handleSetFont,
   }
 
   return (
