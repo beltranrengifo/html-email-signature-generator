@@ -4,8 +4,15 @@ import { isValidFieldValue } from '../../../Preview/SignaturePreview'
 import useImages from '../hooks/useImages'
 
 const BigLogoFipped = ({ image }: { image: string }) => {
-  const { linkedInImage, instagramImage, twitterImage, tiktokImage } =
-    useImages()
+  const {
+    linkedInImage,
+    instagramImage,
+    twitterImage,
+    tiktokImage,
+    pinterestImage,
+    youtubeImage,
+    facebookImage,
+  } = useImages()
 
   const { state: uiState } = useUiContext()
   const {
@@ -30,6 +37,9 @@ const BigLogoFipped = ({ image }: { image: string }) => {
     instagramUrl,
     twitterUrl,
     tiktokUrl,
+    pinterestUrl,
+    youtubeUrl,
+    facebookUrl,
     customUrl,
     customUrlLabel,
     bannerImageUrl,
@@ -202,6 +212,54 @@ const BigLogoFipped = ({ image }: { image: string }) => {
                   <img
                     src={tiktokImage}
                     alt="Twitter"
+                    width="25"
+                    height="25"
+                    style={{ display: 'inline', margin: '8px 0 0 5px' }}
+                  />
+                </a>
+              )}
+              {isValidFieldValue(pinterestUrl) && (
+                <a
+                  href={pinterestUrl}
+                  style={{ textDecoration: 'none' }}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    src={pinterestImage}
+                    alt="Pinterest"
+                    width="25"
+                    height="25"
+                    style={{ display: 'inline', margin: '8px 0 0 5px' }}
+                  />
+                </a>
+              )}
+              {isValidFieldValue(youtubeUrl) && (
+                <a
+                  href={youtubeUrl}
+                  style={{ textDecoration: 'none' }}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    src={youtubeImage}
+                    alt="YouTube"
+                    width="25"
+                    height="25"
+                    style={{ display: 'inline', margin: '8px 0 0 5px' }}
+                  />
+                </a>
+              )}
+              {isValidFieldValue(facebookUrl) && (
+                <a
+                  href={facebookUrl}
+                  style={{ textDecoration: 'none' }}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    src={facebookImage}
+                    alt="Facebook"
                     width="25"
                     height="25"
                     style={{ display: 'inline', margin: '8px 0 0 5px' }}

@@ -24,6 +24,9 @@ export interface ISignatureState {
   instagramUrl?: string
   twitterUrl?: string
   tiktokUrl?: string
+  pinterestUrl?: string
+  youtubeUrl?: string
+  facebookUrl?: string
   customUrl?: string
   customUrlLabel?: string
   address?: string
@@ -47,6 +50,9 @@ const initialState: ISignatureState = {
   instagramUrl: 'https://www.instagram.com/busterkeaton/',
   twitterUrl: 'https://www.twitter.com/busterkeaton/',
   tiktokUrl: 'https://www.tiktok.com/busterkeaton/',
+  pinterestUrl: 'https://www.pinterest.com/busterkeaton/',
+  youtubeUrl: 'https://www.youtube.com/busterkeaton/',
+  facebookUrl: 'https://www.facebook.com/busterkeaton/',
   customUrl: 'https://www.my-custom-domain.com/',
   customUrlLabel: 'Visit my custom domain',
   address: '1 W 2nd St, Piqua, Kansas 66761 EE. UU.',

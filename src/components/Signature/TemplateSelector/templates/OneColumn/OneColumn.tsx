@@ -4,8 +4,15 @@ import { isValidFieldValue } from '../../../Preview/SignaturePreview'
 import useImages from '../hooks/useImages'
 
 const OneColumn = ({ image }: { image: string }) => {
-  const { linkedInImage, instagramImage, twitterImage, tiktokImage } =
-    useImages()
+  const {
+    linkedInImage,
+    instagramImage,
+    twitterImage,
+    tiktokImage,
+    pinterestImage,
+    youtubeImage,
+    facebookImage,
+  } = useImages()
 
   const { state: uiState } = useUiContext()
   const { baseCurrentColor, nameCurrentColor, disclaimerCurrentColor, font } =
@@ -25,6 +32,9 @@ const OneColumn = ({ image }: { image: string }) => {
     instagramUrl,
     twitterUrl,
     tiktokUrl,
+    pinterestUrl,
+    youtubeUrl,
+    facebookUrl,
     customUrl,
     customUrlLabel,
     bannerImageUrl,
@@ -252,6 +262,72 @@ const OneColumn = ({ image }: { image: string }) => {
                             <img
                               src={tiktokImage}
                               alt="tiktok icon"
+                              style={{
+                                border: 0,
+                                height: '20px',
+                                width: '20px',
+                                display: 'inline',
+                                marginLeft: '4px',
+                              }}
+                              width={20}
+                            />
+                          </a>
+                        </span>
+                      )}
+                      {isValidFieldValue(pinterestUrl) && (
+                        <span>
+                          <a
+                            href={pinterestUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <img
+                              src={pinterestImage}
+                              alt="pinterest icon"
+                              style={{
+                                border: 0,
+                                height: '20px',
+                                width: '20px',
+                                display: 'inline',
+                                marginLeft: '4px',
+                              }}
+                              width={20}
+                            />
+                          </a>
+                        </span>
+                      )}
+                      {isValidFieldValue(youtubeUrl) && (
+                        <span>
+                          <a
+                            href={youtubeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <img
+                              src={youtubeImage}
+                              alt="youtube icon"
+                              style={{
+                                border: 0,
+                                height: '20px',
+                                width: '20px',
+                                display: 'inline',
+                                marginLeft: '4px',
+                              }}
+                              width={20}
+                            />
+                          </a>
+                        </span>
+                      )}
+                      {isValidFieldValue(facebookUrl) && (
+                        <span>
+                          <a
+                            href={facebookUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <img
+                              src={facebookImage}
+                              alt="facebook icon"
                               style={{
                                 border: 0,
                                 height: '20px',

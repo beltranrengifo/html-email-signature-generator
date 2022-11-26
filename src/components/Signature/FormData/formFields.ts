@@ -97,6 +97,24 @@ const formFields: IField[] = [
     type: 'url',
   },
   {
+    label: 'Pinterest URL',
+    name: 'pinterestUrl',
+    pattern: 'https://.*',
+    type: 'url',
+  },
+  {
+    label: 'YouTube URL',
+    name: 'youtubeUrl',
+    pattern: 'https://.*',
+    type: 'url',
+  },
+  {
+    label: 'Facebook URL',
+    name: 'facebookUrl',
+    pattern: 'https://.*',
+    type: 'url',
+  },
+  {
     label: 'Custom URL',
     name: 'customUrl',
     pattern: 'https://.*',

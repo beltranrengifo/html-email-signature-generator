@@ -17,8 +17,28 @@ const useImages = () => {
     'https://res.cloudinary.com/dap1oowul/image/upload/v1668636238/tik-tok_sckheo.png',
     'https://res.cloudinary.com/dap1oowul/image/upload/v1668636238/tik-tok-w_mnaehf.png'
   )
+  const pinterestImage = useColorModeValue(
+    'https://res.cloudinary.com/dap1oowul/image/upload/v1669494888/pinterest_ueljcm.png',
+    'https://res.cloudinary.com/dap1oowul/image/upload/v1669494888/pinterest-w_cle6ql.png'
+  )
+  const youtubeImage = useColorModeValue(
+    'https://res.cloudinary.com/dap1oowul/image/upload/v1669494888/youtube_tkfpvf.png',
+    'https://res.cloudinary.com/dap1oowul/image/upload/v1669494888/youtube-w_p9gpad.png'
+  )
+  const facebookImage = useColorModeValue(
+    'https://res.cloudinary.com/dap1oowul/image/upload/v1669494888/facebook_gvuykk.png',
+    'https://res.cloudinary.com/dap1oowul/image/upload/v1669494888/facebook-w_kc14z6.png'
+  )
 
-  return { linkedInImage, instagramImage, twitterImage, tiktokImage }
+  return {
+    linkedInImage,
+    instagramImage,
+    twitterImage,
+    tiktokImage,
+    pinterestImage,
+    youtubeImage,
+    facebookImage,
+  }
 }
 
 export default useImages
