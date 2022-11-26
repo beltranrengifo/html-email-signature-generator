@@ -15,6 +15,12 @@ import { useUiContext } from 'context/ui-context'
 import { SketchPicker } from 'react-color'
 import { EditIcon } from '@chakra-ui/icons'
 
+interface IPicker {
+  label: string
+  color: string
+  setter: (hex: string) => void
+}
+
 const ColorPicker = ({ label }: { label: string }) => {
   const {
     state: uiState,
@@ -44,6 +50,33 @@ const ColorPicker = ({ label }: { label: string }) => {
   const currentDisclaimerColor =
     colorMode === 'light' ? disclaimerColorLight : disclaimerColorDark
 
+  const pickers: IPicker[] = [
+    {
+      label: 'Headline color',
+      color: currentNameColor,
+      setter:
+        colorMode === 'light'
+          ? handleSetNameLightColor
+          : handleSetNameDarkColor,
+    },
+    {
+      label: 'Base color',
+      color: currentBaseColor,
+      setter:
+        colorMode === 'light'
+          ? handleSetBaseLightColor
+          : handleSetBaseDarkColor,
+    },
+    {
+      label: 'Disclaimer color',
+      color: currentDisclaimerColor,
+      setter:
+        colorMode === 'light'
+          ? handleSetDisclaimerLightColor
+          : handleSetDisclaimerDarkColor,
+    },
+  ]
+
   return (
     <Menu placement="left-start" closeOnSelect={false}>
       <MenuButton as={Button} leftIcon={<EditIcon />}>
@@ -51,66 +84,26 @@ const ColorPicker = ({ label }: { label: string }) => {
       </MenuButton>
       <MenuList border={0} p={0} boxShadow="xl">
         <Accordion allowMultiple>
-          <AccordionItem border={0} minW="257px">
-            <h2>
-              <AccordionButton>
-                <Box flex="1" textAlign="left">
-                  Headline color
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel pb={4}>
-              <SketchPicker
-                color={currentNameColor}
-                onChangeComplete={({ hex }) =>
-                  colorMode === 'light'
-                    ? handleSetNameLightColor(hex)
-                    : handleSetNameDarkColor(hex)
-                }
-              />
-            </AccordionPanel>
-          </AccordionItem>
-          <AccordionItem border={0} minW="257px">
-            <h2>
-              <AccordionButton>
-                <Box flex="1" textAlign="left">
-                  Base color
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel pb={4}>
-              <SketchPicker
-                color={currentBaseColor}
-                onChangeComplete={({ hex }) =>
-                  colorMode === 'light'
-                    ? handleSetBaseLightColor(hex)
-                    : handleSetBaseDarkColor(hex)
-                }
-              />
-            </AccordionPanel>
-          </AccordionItem>
-          <AccordionItem border={0} minW="257px">
-            <h2>
-              <AccordionButton>
-                <Box flex="1" textAlign="left">
-                  Disclaimer color
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel pb={4}>
-              <SketchPicker
-                color={currentDisclaimerColor}
-                onChangeComplete={({ hex }) =>
-                  colorMode === 'light'
-                    ? handleSetDisclaimerLightColor(hex)
-                    : handleSetDisclaimerDarkColor(hex)
-                }
-              />
-            </AccordionPanel>
-          </AccordionItem>
+          {pickers.map(({ label, color, setter }) => {
+            return (
+              <AccordionItem border={0} minW="257px" key={label + color}>
+                <h2>
+                  <AccordionButton>
+                    <Box flex="1" textAlign="left">
+                      {label}
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  <SketchPicker
+                    color={color}
+                    onChangeComplete={({ hex }) => setter(hex)}
+                  />
+                </AccordionPanel>
+              </AccordionItem>
+            )
+          })}
         </Accordion>
       </MenuList>
     </Menu>
