@@ -19,6 +19,9 @@ interface IUiState {
   nameColorLight: string
   nameColorDark: string
   nameCurrentColor: string
+  disclaimerColorLight: string
+  disclaimerColorDark: string
+  disclaimerCurrentColor: string
   baseStyles: any
   template: string
 }
@@ -28,6 +31,8 @@ interface IUiActions {
   handleSetBaseDarkColor: (color: string) => void
   handleSetNameLightColor: (color: string) => void
   handleSetNameDarkColor: (color: string) => void
+  handleSetDisclaimerLightColor: (color: string) => void
+  handleSetDisclaimerDarkColor: (color: string) => void
   handleSetTemplate: (template: string) => void
 }
 
@@ -47,6 +52,8 @@ const BASE_COLOR_LIGHT = '#473741'
 const BASE_COLOR_DARK = '#d2d2d2'
 const NAME_COLOR_LIGHT = '#2d2329'
 const NAME_COLOR_DARK = '#e4dede'
+const DISCLAIMER_COLOR_LIGHT = '#2f2a2d'
+const DISCLAIMER_COLOR_DARK = '#b4b0b0'
 
 const UiProvider = ({ children }: { children: JSX.Element }) => {
   const { colorMode } = useColorMode()
@@ -60,6 +67,10 @@ const UiProvider = ({ children }: { children: JSX.Element }) => {
     nameColorDark: NAME_COLOR_DARK,
     nameCurrentColor:
       colorMode === 'light' ? NAME_COLOR_LIGHT : NAME_COLOR_DARK,
+    disclaimerColorLight: DISCLAIMER_COLOR_LIGHT,
+    disclaimerColorDark: DISCLAIMER_COLOR_DARK,
+    disclaimerCurrentColor:
+      colorMode === 'light' ? DISCLAIMER_COLOR_LIGHT : DISCLAIMER_COLOR_DARK,
     baseStyles: BASE_STYLES,
     template: 'BigLogo',
   })
@@ -71,6 +82,10 @@ const UiProvider = ({ children }: { children: JSX.Element }) => {
         colorMode === 'light' ? prev.baseColorLight : prev.baseColorDark,
       nameCurrentColor:
         colorMode === 'light' ? prev.nameColorLight : prev.nameColorDark,
+      disclaimerCurrentColor:
+        colorMode === 'light'
+          ? prev.disclaimerColorLight
+          : prev.disclaimerColorDark,
     }))
   }, [colorMode])
 
@@ -110,6 +125,24 @@ const UiProvider = ({ children }: { children: JSX.Element }) => {
       })),
     []
   )
+  const handleSetDisclaimerLightColor = useCallback(
+    (color: string) =>
+      setState((prev: IUiState) => ({
+        ...prev,
+        disclaimerColorLight: color,
+        disclaimerCurrentColor: color,
+      })),
+    []
+  )
+  const handleSetDisclaimerDarkColor = useCallback(
+    (color: string) =>
+      setState((prev: IUiState) => ({
+        ...prev,
+        disclaimerColorDark: color,
+        disclaimerCurrentColor: color,
+      })),
+    []
+  )
   const handleSetTemplate = useCallback(
     (template: string) =>
       setState((prev: IUiState) => ({
@@ -124,6 +157,8 @@ const UiProvider = ({ children }: { children: JSX.Element }) => {
     handleSetBaseDarkColor,
     handleSetNameLightColor,
     handleSetNameDarkColor,
+    handleSetDisclaimerLightColor,
+    handleSetDisclaimerDarkColor,
     handleSetTemplate,
   }
 

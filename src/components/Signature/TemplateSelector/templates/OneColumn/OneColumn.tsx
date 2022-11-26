@@ -8,7 +8,12 @@ const OneColumn = ({ image }: { image: string }) => {
     useImages()
 
   const { state: uiState } = useUiContext()
-  const { baseCurrentColor, nameCurrentColor, baseStyles } = uiState
+  const {
+    baseCurrentColor,
+    nameCurrentColor,
+    disclaimerCurrentColor,
+    baseStyles,
+  } = uiState
 
   const { state } = useSignatureContext()
 
@@ -314,6 +319,7 @@ const OneColumn = ({ image }: { image: string }) => {
                   paddingTop: '15px',
                   lineHeight: '13px',
                   fontSize: '7pt',
+                  color: disclaimerCurrentColor,
                 }}
               >
                 {disclaimer}

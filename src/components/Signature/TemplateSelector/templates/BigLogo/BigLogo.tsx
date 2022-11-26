@@ -8,7 +8,12 @@ const BigLogo = ({ image }: { image: string }) => {
     useImages()
 
   const { state: uiState } = useUiContext()
-  const { baseCurrentColor, nameCurrentColor, baseStyles } = uiState
+  const {
+    baseCurrentColor,
+    nameCurrentColor,
+    disclaimerCurrentColor,
+    baseStyles,
+  } = uiState
 
   const { state } = useSignatureContext()
 
@@ -270,6 +275,7 @@ const BigLogo = ({ image }: { image: string }) => {
                       textAlign: 'justify',
                       fontSize: '7px',
                       margin: 0,
+                      color: disclaimerCurrentColor,
                     }}
                   >
                     {disclaimer}
