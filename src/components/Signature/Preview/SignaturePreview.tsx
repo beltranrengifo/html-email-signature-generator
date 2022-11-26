@@ -141,7 +141,6 @@ const SignaturePreview = () => {
             <FontPicker label="Choose font" />
           </CardHeader>
           <CardBody
-            id="signature-render"
             pb={0}
             pl={0}
             pr={0}
@@ -151,7 +150,7 @@ const SignaturePreview = () => {
             {isValidFieldValue(name) ? (
               Template ? (
                 <>
-                  <Box p="var(--card-padding)">
+                  <Box p="var(--card-padding)" id="signature-render">
                     <Template image={image} />
                   </Box>
                   <Box mt={12} display="flex" justifyContent="space-between">

@@ -39,7 +39,6 @@ const BigLogo = ({ image }: { image: string }) => {
 
   return (
     <>
-      {' '}
       <meta httpEquiv="Content-Type" content="text/html charset=UTF-8" />
       <table
         border={0}
