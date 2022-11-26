@@ -140,7 +140,14 @@ const SignaturePreview = () => {
             <ColorPicker label="Choose colors" />
             <FontPicker label="Choose font" />
           </CardHeader>
-          <CardBody id="signature-render" pb={0} pl={0} pr={0}>
+          <CardBody
+            id="signature-render"
+            pb={0}
+            pl={0}
+            pr={0}
+            boxShadow="lg"
+            borderRadius="var(--chakra-radii-md)"
+          >
             {isValidFieldValue(name) ? (
               Template ? (
                 <>

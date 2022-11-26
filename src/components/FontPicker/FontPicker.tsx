@@ -4,7 +4,6 @@ import {
   MenuButton,
   Button,
   MenuList,
-  MenuItem,
   MenuItemOption,
   MenuOptionGroup,
 } from '@chakra-ui/react'
@@ -30,30 +29,33 @@ const FontPicker = ({ label }: { label: string }) => {
   const { font: currentfont } = uiState
 
   return (
-    <Menu>
+    <Menu closeOnSelect={false}>
       <MenuButton as={Button} leftIcon={<AtSignIcon />}>
         {label}
       </MenuButton>
       <MenuList>
-        <MenuItem>
-          <MenuOptionGroup defaultValue={currentfont} type="radio">
-            {SAFE_FONTS.map((font) => {
-              return (
-                <MenuItemOption
-                  as="span"
-                  value={font}
-                  fontSize="md"
-                  key={font}
-                  onClick={() => handleSetFont(font)}
-                >
-                  <span style={{ fontFamily: font }}>
-                    Use {font} typography
-                  </span>
-                </MenuItemOption>
-              )
-            })}
-          </MenuOptionGroup>
-        </MenuItem>
+        <MenuOptionGroup defaultValue={currentfont} type="radio">
+          {SAFE_FONTS.map((font) => {
+            return (
+              <MenuItemOption
+                as="span"
+                cursor="pointer"
+                value={font}
+                fontSize="md"
+                key={font}
+                onClick={() => handleSetFont(font)}
+                style={{
+                  backgroundColor:
+                    font === currentfont
+                      ? 'var(--chakra-colors-gray-100)'
+                      : undefined,
+                }}
+              >
+                <span style={{ fontFamily: font }}>Use {font} typography</span>
+              </MenuItemOption>
+            )
+          })}
+        </MenuOptionGroup>
       </MenuList>
     </Menu>
   )
