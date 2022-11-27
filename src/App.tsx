@@ -6,17 +6,18 @@ import { Global } from '@emotion/react'
 import { SignatureProvider } from 'context/signature-context'
 import SignatureThemeSelector from 'components/Signature/ThemeSelector/SignatureThemeSelector'
 import Header from 'components/Header/Header'
+import Footer from 'components/Footer/Footer'
 import SignatureDocumentation from 'components/Signature/ImplementDocs/SignatureDocumentation'
 import { UiProvider } from 'context/ui-context'
 
 export const App = () => (
   <ChakraProvider theme={theme}>
     <Global styles={GlobalStyles} />
-    <Box textAlign="center" fontSize="xl">
-      <Grid p={3}>
-        <Header>
-          <SignatureThemeSelector showTitle={false} />
-        </Header>
+    <Box textAlign="center" fontSize="xl" as="main">
+      <Header>
+        <SignatureThemeSelector showTitle={false} />
+      </Header>
+      <Grid minHeight="calc(100vh - 44px*2)">
         <VStack spacing={8} pb={10}>
           <SignatureProvider>
             <>
@@ -29,6 +30,7 @@ export const App = () => (
           </SignatureProvider>
         </VStack>
       </Grid>
+      <Footer />
     </Box>
   </ChakraProvider>
 )
