@@ -30,3 +30,11 @@ Please fill an issue [here](https://github.com/beltranrengifo/html-email-signatu
 - Install the [Vercel CLI](https://vercel.com/docs/cli), I use a serverless function as a proxy for generating the signature image (more info [here](https://html2canvas.hertzen.com/proxy))
 - You can skip the installation of the Vercel CLI and just run `yarn start`, however the **_signature as image generation_** will not work properly, as the images will not load.
 - Start the development server: `vercel dev`
+
+## What's next
+
+- Create more templates
+- Make the templating code more scalable
+- Maybe some UI revision or feeback is a good point also...
+
+Any help is welcomed!
