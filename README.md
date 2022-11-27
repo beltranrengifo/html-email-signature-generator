@@ -13,7 +13,7 @@ The generator is really simple...
 - Customise template, colors and safe font. I've only used safe fonts to ensure email clients compatibility.
 - Preview and copy the markup.
 - Or download the signature as an image if you prefer.
-- All non filled/empty form fields will not be shown in the final signature, so complete the form at your will.
+- All _non filled_/empty form fields will not be shown in the final signature, so complete the form at your will.
 
 ## Light and dark modes are available!
 
@@ -28,5 +28,5 @@ Please fill an issue [here](https://github.com/beltranrengifo/html-email-signatu
 - Fork or clone
 - Install dependencies with `yarn` or `npm`
 - Install the [Vercel CLI](https://vercel.com/docs/cli), I use a serverless function as a proxy for generating the signature image (more info [here](https://html2canvas.hertzen.com/proxy))
-- You skip the installation of the Vercel CLI and just run `yarn start`, however the **_signature as image generation_** will not work properly, as the images will not load.
+- You can skip the installation of the Vercel CLI and just run `yarn start`, however the **_signature as image generation_** will not work properly, as the images will not load.
 - Start the development server: `vercel dev`
