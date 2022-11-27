@@ -1,59 +1,32 @@
-This project was bootstrapped with
-[Create React App](https://github.com/facebook/create-react-app).
+# HTML SIGNATURE GENERATOR FOR EMAIL CLIENTS
 
-## Available Scripts
+## What is this
 
-In the project directory, you can run:
+This is a humble signature generator which allows to copy and paste a proper HTML markup, mostly table based, optimised for the most popular email clients.
 
-### `npm start`
+## How to use
 
-Runs the app in the development mode.<br /> Open
-[http://localhost:3000](http://localhost:3000) to view it in the browser.
+The generator is really simple...
 
-The page will reload if you make edits.<br /> You will also see any lint errors
-in the console.
+- Just fill the form fields.
+- Upload your images if any.
+- Customise template, colors and safe font. I've only used safe fonts to ensure email clients compatibility.
+- Preview and copy the markup.
+- Or download the signature as an image if you prefer.
+- All non filled/empty form fields will not be shown in the final signature, so complete the form at your will.
 
-### `npm test`
+## Light and dark modes are available!
 
-Launches the test runner in the interactive watch mode.<br /> See the section
-about
-[running tests](https://facebook.github.io/create-react-app/docs/running-tests)
-for more information.
+Use the color mode switcher on the top right to change the color schema and customise the signature as you want.
 
-### `npm run build`
+## Issues and requests
 
-Builds the app for production to the `build` folder.<br /> It correctly bundles
-React in production mode and optimizes the build for the best performance.
+Please fill an issue [here](https://github.com/beltranrengifo/html-email-signature-generator/issues) and I'll take care of it ASAP.
 
-The build is minified and the filenames include the hashes.<br /> Your app is
-ready to be deployed!
+## Contribute or extend the development
 
-See the section about
-[deployment](https://facebook.github.io/create-react-app/docs/deployment) for
-more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can
-`eject` at any time. This command will remove the single build dependency from
-your project.
-
-Instead, it will copy all the configuration files and the transitive
-dependencies (webpack, Babel, ESLint, etc) right into your project so you have
-full control over them. All of the commands except `eject` will still work, but
-they will point to the copied scripts so you can tweak them. At this point
-you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for
-small and middle deployments, and you shouldn’t feel obligated to use this
-feature. However we understand that this tool wouldn’t be useful if you couldn’t
-customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the
-[Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Fork or clone
+- Install dependencies with `yarn` or `npm`
+- Install the [Vercel CLI](https://vercel.com/docs/cli), I use a serverless function as a proxy for generating the signature image (more info [here](https://html2canvas.hertzen.com/proxy))
+- You skip the installation of the Vercel CLI and just run `yarn start`, however the **_signature as image generation_** will not work properly, as the images will not load.
+- Start the development server: `vercel dev`
