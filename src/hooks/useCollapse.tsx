@@ -5,8 +5,7 @@ import { Collapse } from 'react-collapse'
 const useCollapse = (initialState: boolean): [boolean, any, any] => {
   const [collapseIsOpen, setCollapseIsOpen] = useState(initialState)
 
-  return [
-    collapseIsOpen,
+  const CollapseTrigger = (
     <Button
       key="useCollapseButton"
       onClick={() => setCollapseIsOpen(!collapseIsOpen)}
@@ -18,9 +17,10 @@ const useCollapse = (initialState: boolean): [boolean, any, any] => {
       variant="outline"
     >
       {collapseIsOpen ? 'Collapse' : 'Expand'}
-    </Button>,
-    Collapse,
-  ]
+    </Button>
+  )
+
+  return [collapseIsOpen, CollapseTrigger, Collapse]
 }
 
 export default useCollapse
