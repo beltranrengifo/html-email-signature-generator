@@ -1,5 +1,3 @@
-import { Collapse } from 'react-collapse'
-
 import { Box, Button, Container, Grid, Heading } from '@chakra-ui/react'
 import { DeleteIcon, RepeatIcon } from '@chakra-ui/icons'
 
@@ -15,7 +13,7 @@ export const HeadingStyled = styled(Heading)`
 `
 
 const SignatureFormData = () => {
-  const [collapseIsOpen, CollapseButton] = useCollapse(true)
+  const [collapseIsOpen, CollapseButton, Collapse] = useCollapse(true)
 
   const {
     actions: { handleClearSignature, handleRestoreSignature },

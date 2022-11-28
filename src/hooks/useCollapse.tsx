@@ -1,7 +1,8 @@
 import { Button } from '@chakra-ui/react'
 import { useState } from 'react'
+import { Collapse } from 'react-collapse'
 
-const useCollapse = (initialState: boolean): [boolean, any] => {
+const useCollapse = (initialState: boolean): [boolean, any, any] => {
   const [collapseIsOpen, setCollapseIsOpen] = useState(initialState)
 
   return [
@@ -18,6 +19,7 @@ const useCollapse = (initialState: boolean): [boolean, any] => {
     >
       {collapseIsOpen ? 'Collapse' : 'Expand'}
     </Button>,
+    Collapse,
   ]
 }
 

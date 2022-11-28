@@ -8,12 +8,11 @@ import {
   Container,
 } from '@chakra-ui/react'
 import { HeadingStyled } from 'components/Signature/FormData/SignatureFormData'
-import { Collapse } from 'react-collapse'
 import useCollapse from 'hooks/useCollapse'
 import documentationItems from './documentationItems'
 
 const SignatureDocumentation = () => {
-  const [collapseIsOpen, CollapseButton] = useCollapse(false)
+  const [collapseIsOpen, CollapseButton, Collapse] = useCollapse(false)
 
   return (
     <Container>

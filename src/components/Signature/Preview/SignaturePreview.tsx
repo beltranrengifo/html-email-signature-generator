@@ -1,5 +1,3 @@
-import { Collapse } from 'react-collapse'
-
 import {
   Alert,
   AlertIcon,
@@ -46,7 +44,7 @@ const cleanUpEmptyValues = (obj: any): void => {
 }
 
 const SignaturePreview = () => {
-  const [collapseIsOpen, CollapseButton] = useCollapse(false)
+  const [collapseIsOpen, CollapseButton, Collapse] = useCollapse(false)
 
   let clipboard: Clipboard
   const [isCopying, setIsCopying] = useState(false)
