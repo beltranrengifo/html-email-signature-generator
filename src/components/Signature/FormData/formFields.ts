@@ -33,6 +33,7 @@ const formFields: IField[] = [
     tooltip:
       'Paste your image URL or upload a new one. JPG, PNG and GIF formats. Max file size allowed 800KB. Recommended image max width 600px',
     type: 'url',
+    colSpan: 2,
   },
   {
     helperText:
@@ -44,6 +45,7 @@ const formFields: IField[] = [
     tooltip:
       'Paste your image URL or upload a new one. JPG, PNG and GIF formats. Max file size allowed 400KB. Recommended image max width 600px',
     type: 'url',
+    colSpan: 2,
   },
   {
     label: 'Work role',
@@ -77,42 +79,49 @@ const formFields: IField[] = [
     name: 'linkedinUrl',
     pattern: 'https://.*',
     type: 'url',
+    colSpan: 2,
   },
   {
     label: 'Instagram URL',
     name: 'instagramUrl',
     pattern: 'https://.*',
     type: 'url',
+    colSpan: 2,
   },
   {
     label: 'Twitter URL',
     name: 'twitterUrl',
     pattern: 'https://.*',
     type: 'url',
+    colSpan: 2,
   },
   {
     label: 'TikTok URL',
     name: 'tiktokUrl',
     pattern: 'https://.*',
     type: 'url',
+    colSpan: 2,
   },
   {
     label: 'Pinterest URL',
     name: 'pinterestUrl',
     pattern: 'https://.*',
     type: 'url',
+    colSpan: 2,
   },
   {
     label: 'YouTube URL',
     name: 'youtubeUrl',
     pattern: 'https://.*',
     type: 'url',
+    colSpan: 2,
   },
   {
     label: 'Facebook URL',
     name: 'facebookUrl',
     pattern: 'https://.*',
     type: 'url',
+    colSpan: 2,
   },
   {
     label: 'Custom URL',
@@ -133,12 +142,14 @@ const formFields: IField[] = [
     tooltip:
       'Paste your banner image URL or upload a new one. JPG, PNG and GIF formats. Max file size allowed 800KB. Recommended image max width 600px',
     type: 'url',
+    colSpan: 2,
   },
   {
     label: 'Banner Image Link',
     name: 'bannerImageLink',
     pattern: 'https://.*',
     type: 'url',
+    colSpan: 2,
   },
   {
     helperText:
