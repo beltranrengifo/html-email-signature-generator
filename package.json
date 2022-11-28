@@ -1,6 +1,6 @@
 {
-  "name": "html-signature-generator",
-  "version": "0.1.0",
+  "name": "html-email-signature-generator",
+  "version": "1.0.1",
   "private": true,
   "dependencies": {
     "@chakra-ui/icons": "^2.0.12",
