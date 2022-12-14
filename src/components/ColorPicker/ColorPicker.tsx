@@ -12,7 +12,7 @@ import {
   useColorMode,
 } from '@chakra-ui/react'
 import { useUiContext } from 'context/ui-context'
-import { SketchPicker } from 'react-color'
+import { CompactPicker } from 'react-color'
 import { EditIcon } from '@chakra-ui/icons'
 
 interface IPicker {
@@ -96,7 +96,7 @@ const ColorPicker = ({ label }: { label: string }) => {
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  <SketchPicker
+                  <CompactPicker
                     color={color}
                     onChangeComplete={({ hex }) => setter(hex)}
                   />
